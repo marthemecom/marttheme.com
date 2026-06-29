@@ -26,196 +26,128 @@
             font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
-        .track-header {
-            background: rgba(5, 11, 20, 0.95);
-            border-bottom: 2px solid var(--electric-blue);
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .track-header { background: rgba(5, 11, 20, 0.95); border-bottom: 2px solid var(--electric-blue); box-shadow: 0 0 20px rgba(0, 102, 255, 0.3); padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; }
+        .track-wrapper { max-width: 700px; margin: 40px auto; background: rgba(5, 11, 20, 0.85); border: 1px solid var(--border-color); padding: 40px; border-radius: 4px; box-shadow: 0 0 25px rgba(0, 102, 255, 0.15); box-sizing: border-box; }
+        .track-title { font-family: 'Impact', sans-serif; font-size: 28px; letter-spacing: 1px; text-transform: uppercase; margin-top: 0; margin-bottom: 10px; color: var(--cyber-blue); }
 
-        .internal-logo {
-            font-family: 'Impact', sans-serif;
-            font-size: 24px;
-            letter-spacing: 2px;
-            color: var(--solid-white);
-            text-shadow: 0 0 10px var(--cyber-blue);
-            text-decoration: none;
-        }
+        .form-inline-group { display: flex; gap: 15px; margin-top: 25px; margin-bottom: 30px; }
+        .form-inline-group input { flex: 1; padding: 14px; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--electric-blue); border-radius: 4px; color: var(--solid-white); font-size: 14px; box-sizing: border-box; }
+        .form-inline-group input:focus { outline: none; border-color: var(--cyber-blue); box-shadow: 0 0 10px rgba(0, 210, 255, 0.4); }
 
-        .track-wrapper {
-            max-width: 600px;
-            margin: 50px auto;
-            background: rgba(5, 11, 20, 0.85);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 0 25px rgba(0, 102, 255, 0.15);
-        }
+        .btn-cyber-search { background: var(--electric-blue); color: var(--solid-white); border: none; padding: 0 25px; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); transition: all 0.2s; }
+        .btn-cyber-search:hover { background: var(--cyber-blue); color: var(--bg-dark-cyber); box-shadow: 0 0 15px var(--cyber-blue); }
 
-        .track-title {
-            font-family: 'Impact', sans-serif;
-            font-size: 28px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 10px;
-            color: var(--cyber-blue);
-        }
+        .status-display-box { display: none; background: rgba(0, 0, 0, 0.3); border: 1px solid var(--electric-blue); padding: 25px; border-radius: 4px; text-align: left; margin-bottom: 30px; }
+        .hud-row { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 14px; color: var(--muted-white); }
+        .hud-row strong { color: var(--solid-white); }
 
-        .form-inline-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-            margin-bottom: 30px;
-        }
+        .status-badge { padding: 3px 10px; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border-radius: 2px; }
+        .btn-return-store { background: transparent; border: 1px solid var(--electric-blue); color: var(--solid-white); padding: 6px 14px; font-weight: bold; text-transform: uppercase; font-size: 12px; text-decoration: none; transition: all 0.2s; }
+        .btn-return-store:hover { background: rgba(0, 102, 255, 0.1); border-color: var(--cyber-blue); }
 
-        .form-inline-group input {
-            flex: 1;
-            padding: 14px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--electric-blue);
-            border-radius: 4px;
-            color: var(--solid-white);
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-
-        .form-inline-group input:focus {
-            outline: none;
-            border-color: var(--cyber-blue);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-        }
-
-        .btn-cyber-search {
-            background: var(--electric-blue);
-            color: var(--solid-white);
-            border: none;
-            padding: 0 25px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
-            transition: all 0.2s;
-        }
-
-        .btn-cyber-search:hover {
-            background: var(--cyber-blue);
-            color: var(--bg-dark-cyber);
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        /* Status HUD Component Styling */
-        .status-display-box {
-            display: none;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px dashed var(--electric-blue);
-            padding: 25px;
-            border-radius: 4px;
-            text-align: left;
-        }
-
-        .hud-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
-            color: var(--muted-white);
-        }
-
-        .hud-row strong {
-            color: var(--solid-white);
-        }
-
-        .status-badge {
-            background: #ff9900;
-            color: #000;
-            padding: 2px 10px;
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-return-store {
-            background: transparent;
-            border: 1px solid var(--electric-blue);
-            color: var(--solid-white);
-            padding: 6px 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-return-store:hover {
-            background: rgba(0, 102, 255, 0.1);
-            border-color: var(--cyber-blue);
-        }
+        /* 👑 MASTER ADMIN DESK SYSTEM STYLING 👑 */
+        .admin-gate-card { border-top: 1px solid var(--border-color); margin-top: 40px; padding-top: 30px; }
+        .admin-panel-workspace { display: none; background: rgba(5, 11, 20, 0.95); border: 1px dashed var(--cyber-blue); padding: 25px; margin-top: 20px; border-radius: 4px; }
+        
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; text-align: left; }
+        .admin-table th, .admin-table td { padding: 12px; border-bottom: 1px solid rgba(0, 102, 255, 0.2); }
+        .admin-table th { color: var(--cyber-blue); font-family: 'Impact', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .btn-admin-action { background: #00ffcc; color: #000; border: none; padding: 6px 12px; font-weight: bold; font-size: 11px; text-transform: uppercase; cursor: pointer; border-radius: 2px; transition: all 0.2s; }
+        .btn-admin-action:hover { background: var(--solid-white); box-shadow: 0 0 10px #00ffcc; }
     </style>
 </head>
 <body>
 
     <header class="track-header">
         <a href="minecraft.html" class="internal-logo">◀ MART THEME HUB</a>
-        <a href="minecraft.html" class="btn-return-store">Return to Core</a>
+        <a href="minecraft.html" class="btn-return-store">Return to Store</a>
     </header>
 
     <div class="track-wrapper">
+        <!-- CUSTOMER VIEWPORT CONSOLE -->
         <h3 class="track-title">Order Status Gateway</h3>
-        <p style="color: var(--muted-white); margin: 0; font-size: 14px;">Input your reference string to scan active order validation parameters.</p>
+        <p style="color: var(--muted-white); margin: 0; font-size: 14px;">Input your generated 10-digit tracking code string to scan active order parameter nodes.</p>
         
-        <form onsubmit="locateOrderNode(); return false;">
+        <form onsubmit="scanUserOrderNode(); return false;">
             <div class="form-inline-group">
-                <input type="text" id="search-utr" required placeholder="Enter Transaction UTR Reference Key...">
-                <button type="submit" class="btn-cyber-search">Scan Node</button>
+                <input type="text" id="search-code" required placeholder="Paste Your Custom Code Here...">
+                <button type="submit" class="btn-cyber-search">Scan Matrix</button>
             </div>
         </form>
 
-        <!-- Dynamic Status Display Container Box -->
         <div id="status-hud" class="status-display-box">
             <h4 style="color: var(--cyber-blue); margin-top: 0; margin-bottom: 15px; font-family: 'Impact', sans-serif; letter-spacing: 1px; text-transform: uppercase;">Node Transmission Receipt</h4>
+            <div class="hud-row"><span>Discord Username ID:</span><strong id="hud-discord">Player</strong></div>
+            <div class="hud-row"><span>Selected Items:</span><strong id="hud-items" style="color: var(--cyber-blue)">None</strong></div>
+            <div class="hud-row"><span>Invoice Value:</span><strong id="hud-total">0rs</strong></div>
+            <div class="hud-row"><span>Fulfillment State:</span><span><span id="hud-status" class="status-badge" style="background:#ff9900; color:#000;">Processing</span></span></div>
+        </div>
+
+        <!-- 👑 ADMINISTRATIVE OVERLAY TERMINAL AREA 👑 -->
+        <div class="admin-gate-card">
+            <h4 style="font-family: 'Impact', sans-serif; color: var(--electric-blue); font-size: 20px; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 5px 0;">Admin Override Terminal</h4>
+            <p style="color: var(--muted-white); font-size: 13px; margin: 0 0 15px 0;">Input your private verification pin key string to reveal the global site orders manager logs layer.</p>
             
-            <div class="hud-row">
-                <span>Target Reference VPA:</span>
-                <strong id="hud-utr">UTR-XXXXX</strong>
+            <div style="display: flex; gap: 15px;">
+                <!-- Password type locks input data visibility values -->
+                <input type="password" id="admin-pass-key" style="flex:1; padding:12px; background:rgba(0,0,0,0.5); border:1px solid var(--electric-blue); border-radius:4px; color:#fff;" placeholder="Enter Secure Admin Pin Key...">
+                <button type="button" class="btn-cyber-search" onclick="unlockAdminWorkspaceNode()">Authorize Admin</button>
             </div>
-            <div class="hud-row">
-                <span>Verification State:</span>
-                <span><span id="hud-status" class="status-badge">Processing</span></span>
-            </div>
-            <div class="hud-row">
-                <span>Estimated Matrix Dispatch:</span>
-                <strong style="color: var(--cyber-blue)">Within 10 Minutes</strong>
+
+            <div id="admin-workspace" class="admin-panel-workspace">
+                <h4 style="color: #ff4d4d; font-family: 'Impact', sans-serif; margin-top: 0; letter-spacing: 1px; text-transform: uppercase;">Central Customer Ledger Node</h4>
+                <div style="overflow-x: auto;">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Code ID</th>
+                                <th>Discord</th>
+                                <th>Products</th>
+                                <th>Price</th>
+                                <th>Status State</th>
+                                <th>Action Node</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-rows">
+                            <!-- Javascript populates order items lists directly here -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        function locateOrderNode() {
-            const queryUtr = document.getElementById('search-utr').value;
+        // Customer code lookup tracking function logic 
+        function scanUserOrderNode() {
+            const lookKey = document.getElementById('search-code').value.trim();
+            let allOrders = JSON.parse(localStorage.getItem('all_orders')) || [];
             
-            // Populates the info matrix dynamically based on user lookup inputs
-            document.getElementById('hud-utr').innerText = queryUtr;
-            document.getElementById('status-hud').style.display = 'block';
-            
-            // Simulates background ledger lookup sequences cleanly
-            let statusBadge = document.getElementById('hud-status');
-            statusBadge.innerText = "Verifying Remittance";
-            statusBadge.style.background = "#ff9900";
-            
-            // Sets a delayed trigger simulating active administration check updates
-            setTimeout(() => {
-                statusBadge.innerText = "Assets Dispatched ✔";
-                statusBadge.style.background = "#00ffcc";
-            }, 3000);
-        }
-    </script>
+            let match = allOrders.find(o => o.id === lookKey);
+            if (!match) {
+                alert("❌ ACCESS DENIED! The code entered does not match any entry rows inside our website storage file ledger.");
+                document.getElementById('status-hud').style.display = 'none';
+                return;
+            }
 
-</body>
-</html>
+            document.getElementById('hud-discord').innerText = match.discord;
+            document.getElementById('hud-items').innerText = match.items;
+            document.getElementById('hud-total').innerText = match.total;
+            
+            let badge = document.getElementById('hud-status');
+            badge.innerText = match.status;
+            if (match.status === "Order Completed ✔") {
+                badge.style.background = "#00ffcc";
+                badge.style.color = "#000";
+            } else {
+                badge.style.background = "#ff9900";
+                badge.style.color = "#000";
+            }
+            document.getElementById('status-hud').style.display = 'block';
+        }
+
+        // 👑 ADMIN CARD KEY COMPARATOR AND FIELD RENDERING LOOPS 👑
+        function unlockAdminWorkspaceNode() {
+            const inputPass = document.getElementById('admin-pass-key').value;
