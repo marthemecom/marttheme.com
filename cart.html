@@ -186,7 +186,7 @@
                 <button onclick="clearCart()" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size:12px; font-weight:bold; text-transform:uppercase;">[Wipe Cart]</button>
             </h3>
             
-            <!-- This container is empty on purpose. JavaScript will inject the added items here -->
+            <!-- This container maps both minecraft and graphics items dynamically -->
             <div id="cart-items-container"></div>
 
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
@@ -217,6 +217,7 @@
     </div>
 
     <script>
+        // ❌ FIXED LOGIC: Reads 'userCart' data uniformly from both pages ❌
         function loadCartDisplay() {
             let cart = JSON.parse(localStorage.getItem('userCart')) || [];
             let container = document.getElementById('cart-items-container');
