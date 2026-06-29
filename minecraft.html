@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mart Theme - Minecraft Store</title>
     <style>
-        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
@@ -77,7 +76,6 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <!-- 📡 Integrated Standalone Tracking Portal Gateway Link Row 📡 -->
             <a href="track.html" style="font-weight: bold; color: var(--solid-white); text-decoration: none; font-size: 14px; letter-spacing: 1px;">📡 TRACK ORDER</a>
             <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
@@ -96,7 +94,6 @@
         </div>
 
         <div class="catalog-grid">
-            <!-- MCFA ACC -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">MCFA ACC</span>
@@ -107,13 +104,13 @@
                         <span class="price-gaming">700rs</span>
                     </div>
                     <div class="action-container-gaming">
+                        <!-- ❌ FIXED: Passed strict clean variables internally ❌ -->
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Minecraft Full Access Account', 700)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('Minecraft Full Access Account', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- MC ACC -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">MC ACC</span>
