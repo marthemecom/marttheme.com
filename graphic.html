@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mart Theme - Graphics Node</title>
+    <title>Mart Theme - Graphics Store</title>
     <style>
         :root {
             --bg-dark-cyber: #050b14;
@@ -174,6 +174,7 @@
             </div>
         </div>
     </div>
+
     <script>
         function getDatabase() {
             return JSON.parse(localStorage.getItem('cart')) || [];
@@ -181,31 +182,6 @@
 
         function refreshHeaderBadge() {
             let activeItems = getDatabase();
-            let badge = document.getElementById('count');
-            if (badge) {
-                badge.innerText = activeItems.length;
-            }
+            document.getElementById('count').innerText = activeItems.length;
         }
 
-        // ❌ FIXED: Full operational logic to save item to local storage ❌
-        function pushToStorage(itemName, itemPrice) {
-            let activeItems = getDatabase();
-            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('cart', JSON.stringify(activeItems));
-            refreshHeaderBadge();
-            alert(itemName + " added to your cart matrix!");
-        }
-
-        // ❌ FIXED: Full operational logic to save item and take user to checkout ❌
-        function buyNowLink(itemName, itemPrice) {
-            let activeItems = getDatabase();
-            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('cart', JSON.stringify(activeItems));
-            window.location.href = 'cart.html';
-        }
-
-        // Initialize badge value on page start
-        window.onload = function() {
-            refreshHeaderBadge();
-        }
-    </script>
