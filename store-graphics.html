@@ -38,7 +38,7 @@
             z-index: 1000;
         }
 
-        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; }
+        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; cursor: pointer; }
         .marketplace-tabs-bar { display: flex; gap: 15px; margin-bottom: 35px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-top: 20px; }
 
         .tab-pill {
@@ -76,6 +76,7 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
+            <!-- ❌ FIXED LAYER: Restored tracking count badge ID hook snippet cleanly ❌ -->
             <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
@@ -93,6 +94,7 @@
         </div>
 
         <div class="catalog-grid">
+            <!-- Video Editing -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">VIDEO EDITING</span>
@@ -109,6 +111,7 @@
                 </div>
             </div>
 
+            <!-- Thumbnail -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">THUMBNAIL</span>
@@ -125,6 +128,7 @@
                 </div>
             </div>
 
+            <!-- YT Banner -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT BANNER</span>
@@ -141,6 +145,7 @@
                 </div>
             </div>
 
+            <!-- YT Logo -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT LOGO</span>
@@ -157,6 +162,7 @@
                 </div>
             </div>
 
+            <!-- Discord Server Setup -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">DC SERVER SETUP</span>
@@ -167,22 +173,13 @@
                         <span class="price-gaming">700rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup', 700)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup Layout', 700)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup Layout', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 🛠️ ALL BRACKETS METICULOUSLY CLOSED AND INLINED 🛠️ -->
     <script>
         function getDatabase() {
-            return JSON.parse(localStorage.getItem('martcart')) || [];
-        }
-
-        function refreshHeaderBadge() {
-            let activeItems = getDatabase();
-            document.getElementById('count').innerText = activeItems.length;
-        }
-
