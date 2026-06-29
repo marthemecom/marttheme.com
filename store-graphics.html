@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mart Theme - Minecraft Store</title>
+    <title>Mart Theme - Graphics Store</title>
     <style>
         :root {
             --bg-dark-cyber: #050b14;
@@ -38,7 +38,7 @@
             z-index: 1000;
         }
 
-        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; }
+        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; }
         .marketplace-tabs-bar { display: flex; gap: 15px; margin-bottom: 35px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-top: 20px; }
 
         .tab-pill {
@@ -84,50 +84,98 @@
     <div style="max-width: 1200px; margin: 0 auto; padding: 40px 20px;">
         <div style="margin-bottom: 30px;">
             <h2 style="font-family: 'Impact', sans-serif; font-size: 36px; letter-spacing: 1px; text-transform: uppercase; margin: 0 0 5px 0;">Marketplace Terminal</h2>
-            <p style="color: var(--muted-white); margin: 0;">Acquire live gaming properties and active accounts inside your selected hub node.</p>
+            <p style="color: var(--muted-white); margin: 0;">Acquire branding modifications, video setups, and design nodes inside your console.</p>
         </div>
 
         <div class="marketplace-tabs-bar">
-            <a href="minecraft.html" class="tab-pill active-pill">⛏️ Minecraft Store</a>
-            <!-- Fixed redirection to the fresh un-cached page name -->
-            <a href="store-graphics.html" class="tab-pill">🎬 Editing & Graphics</a>
+            <a href="minecraft.html" class="tab-pill">⛏️ Minecraft Store</a>
+            <a href="store-graphics.html" class="tab-pill active-pill">🎬 Editing & Graphics</a>
         </div>
 
         <div class="catalog-grid">
             <div class="gaming-product-card">
                 <div>
-                    <span class="game-badge">MCFA ACC</span>
-                    <h4>Minecraft Full Access Account</h4>
+                    <span class="game-badge">VIDEO EDITING</span>
+                    <h4>Professional Video Editing Work</h4>
+                </div>
+                <div>
+                    <div class="price-row-gaming">
+                        <span class="price-gaming">500rs</span>
+                    </div>
+                    <div class="action-container-gaming">
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Professional Video Editing Work', 500)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Professional Video Editing Work', 500)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gaming-product-card">
+                <div>
+                    <span class="game-badge">THUMBNAIL</span>
+                    <h4>High-CTR YouTube Thumbnail</h4>
+                </div>
+                <div>
+                    <div class="price-row-gaming">
+                        <span class="price-gaming">100rs</span>
+                    </div>
+                    <div class="action-container-gaming">
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gaming-product-card">
+                <div>
+                    <span class="game-badge">YT BANNER</span>
+                    <h4>Custom YouTube Channel Banner</h4>
+                </div>
+                <div>
+                    <div class="price-row-gaming">
+                        <span class="price-gaming">79rs</span>
+                    </div>
+                    <div class="action-container-gaming">
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Custom YouTube Channel Banner', 79)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Custom YouTube Channel Banner', 79)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gaming-product-card">
+                <div>
+                    <span class="game-badge">YT LOGO</span>
+                    <h4>Vector YouTube Channel Logo</h4>
+                </div>
+                <div>
+                    <div class="price-row-gaming">
+                        <span class="price-gaming">50rs</span>
+                    </div>
+                    <div class="action-container-gaming">
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Vector YouTube Channel Logo', 50)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Vector YouTube Channel Logo', 50)">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gaming-product-card">
+                <div>
+                    <span class="game-badge">DC SERVER SETUP</span>
+                    <h4>Complete Discord Server Setup Layout</h4>
                 </div>
                 <div>
                     <div class="price-row-gaming">
                         <span class="price-gaming">700rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Minecraft Full Access Account', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Minecraft Full Access Account', 700)">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="gaming-product-card">
-                <div>
-                    <span class="game-badge">MC ACC</span>
-                    <h4>Standard Minecraft Account</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">400rs</span>
-                    </div>
-                    <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Standard Minecraft Account', 400)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Standard Minecraft Account', 400)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup', 700)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 🛠️ ALL BRACKETS METICULOUSLY CLOSED AND INLINED 🛠️ -->
     <script>
         function getDatabase() {
             return JSON.parse(localStorage.getItem('martcart')) || [];
@@ -138,22 +186,3 @@
             document.getElementById('count').innerText = activeItems.length;
         }
 
-        function pushToStorage(itemName, itemPrice) {
-            let activeItems = getDatabase();
-            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('martcart', JSON.stringify(activeItems));
-            refreshHeaderBadge();
-            alert(itemName + " added to your cart!");
-        }
-
-        function buyNowLink(itemName, itemPrice) {
-            let activeItems = getDatabase();
-            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('martcart', JSON.stringify(activeItems));
-            window.location.href = 'cart.html';
-        }
-
-        refreshHeaderBadge();
-    </script>
-</body>
-</html>
