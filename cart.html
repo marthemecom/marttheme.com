@@ -42,14 +42,13 @@
         .basket-item { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 15px; }
         .total-row { display: flex; justify-content: space-between; font-size: 20px; font-family: 'Impact', sans-serif; letter-spacing: 1px; color: var(--solid-white); margin-top: 25px; text-transform: uppercase; }
 
-        .upi-qr-container { background: rgba(0, 0, 0, 0.4); border: 1px dashed var(--electric-blue); padding: 24px; text-align: center; margin-bottom: 25px; border-radius: 4px; }
-        .qr-render-box { width: 180px; height: 180px; background: var(--solid-white); margin: 15px auto; border: 4px solid var(--cyber-blue); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .qr-render-box img { width: 100%; height: 100%; object-fit: contain; }
-
+        .discord-info-box { background: rgba(0, 102, 255, 0.05); border: 1px dashed var(--electric-blue); padding: 20px; text-align: center; margin-bottom: 25px; border-radius: 4px; }
+        
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: var(--muted-white); }
         .form-group input { width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.5); border: 1px solid var(--electric-blue); border-radius: 4px; color: var(--solid-white); font-size: 14px; box-sizing: border-box; }
         .form-group input:focus { outline: none; border-color: var(--cyber-blue); box-shadow: 0 0 10px rgba(0, 210, 255, 0.4); }
+        
         .btn-cyber-checkout { background: var(--electric-blue); color: var(--solid-white); border: none; padding: 14px; width: 100%; font-weight: bold; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); transition: all 0.2s; text-align: center; display: block; text-decoration: none; box-sizing: border-box; }
         .btn-cyber-checkout:hover { background: var(--cyber-blue); color: var(--bg-dark-cyber); box-shadow: 0 0 15px var(--cyber-blue); }
         .btn-return { background: transparent; border: 1px solid var(--electric-blue); color: var(--solid-white); padding: 6px 14px; font-weight: bold; text-transform: uppercase; font-size: 12px; text-decoration: none; transition: all 0.2s; }
@@ -78,25 +77,20 @@
         </div>
 
         <div class="summary-card">
-            <h3 class="card-title">Secure Remittance Authorization</h3>
-            <div class="upi-qr-container">
-                <span style="font-size:11px; color:var(--cyber-blue); font-weight:bold; letter-spacing:1px; text-transform:uppercase;">Scan node via GPay / PhonePe / Paytm</span>
-                <div class="qr-render-box">
-                    <img id="upi-qr-image" src="" alt="Dynamic Secure QR Node">
-                </div>
-                <span style="font-size:13px; color:var(--solid-white);">Merchant VPA ID: <strong style="color:var(--cyber-blue)">marttheme@upi</strong></span>
+            <h3 class="card-title">Order Node Dispatcher</h3>
+            
+            <!-- 💬 Discord Info Box Replacing QR Panel 💬 -->
+            <div class="discord-info-box">
+                <span style="font-size:13px; color:var(--cyber-blue); font-weight:bold; letter-spacing:1px; text-transform:uppercase;">💬 Discord Manual Billing Active</span>
+                <p style="font-size:12px; color:var(--solid-white); margin: 8px 0 0 0; line-height: 1.4;">Submit your order booking here to fetch a random tracking ID code. You can clear the payment invoice directly with our staff once we are online in Discord!</p>
             </div>
 
             <form onsubmit="executePurchaseOrder(); return false;">
                 <div class="form-group">
-                    <label>Client Contact/In-game Name (For Delivery Verification)</label>
-                    <input type="text" id="client-id" required placeholder="Player Name or Handle">
+                    <label>Client Discord Username ID (For Delivery Tracking)</label>
+                    <input type="text" id="client-discord" required placeholder="player_handle">
                 </div>
-                <div class="form-group">
-                    <label>Transaction UTR / Ref Number (From Bank Receipt)</label>
-                    <input type="text" id="utr-id" required placeholder="12-Digit UTR Number">
-                </div>
-                <button type="submit" class="btn-cyber-checkout">Submit Verification & Place Order</button>
+                <button type="submit" class="btn-cyber-submit btn-cyber-checkout">Generate Code & Request Assets</button>
             </form>
         </div>
     </div>
@@ -106,12 +100,10 @@
             let cart = JSON.parse(localStorage.getItem('martcart')) || [];
             let container = document.getElementById('cart-items-container');
             let totalDisplay = document.getElementById('total-price-display');
-            let qrImg = document.getElementById('upi-qr-image');
             
             if (cart.length === 0) {
                 container.innerHTML = `<p style="color: var(--muted-white); font-style: italic;">Your cart matrix is empty.</p>`;
                 totalDisplay.innerText = "0rs";
-                qrImg.style.display = "none";
                 return;
             }
             
@@ -130,10 +122,6 @@
             
             container.innerHTML = htmlContent;
             totalDisplay.innerText = grandTotal + "rs";
-            
-            let upiString = `upi://pay?pa=marttheme@upi&pn=MartMarketplace&am=${grandTotal}&cu=INR&tn=DigitalProductOrder`;
-            qrImg.src = `https://qrserver.com{encodeURIComponent(upiString)}`;
-            qrImg.style.display = "block";
         }
 
         function clearCart() {
@@ -141,7 +129,6 @@
             loadCartDisplay();
         }
 
-        // ❌ FIXED: AUTOMATIC 15-DIGIT CODE GENERATION & INTERNAL ORDER LOGGER ❌
         function executePurchaseOrder() {
             let cart = JSON.parse(localStorage.getItem('martcart')) || [];
             if(cart.length === 0) {
@@ -149,27 +136,37 @@
                 return;
             }
 
-            const clientName = document.getElementById('client-id').value;
-            const bankUtr = document.getElementById('utr-id').value;
+            const discordHandle = document.getElementById('client-discord').value;
             
-            // Loop code building an absolute mathematical 15-digit random numeric string chain
-            let generatedTrackingCode = "";
-            for (let i = 0; i < 15; i++) {
-                generatedTrackingCode += Math.floor(Math.random() * 10).toString();
+            // Generate a random tracking code string (mix of numbers and uppercase letters)
+            let randomTrackingCode = "";
+            const characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            for (let i = 0; i < 10; i++) {
+                randomTrackingCode += characters.charAt(Math.floor(Math.random() * characters.length));
             }
 
-            // Group all relevant order data together into an invoice row tracking item card
-            const newOrderPayload = {
-                trackingId: generatedTrackingCode,
-                name: clientName,
-                utr: bankUtr,
+            // Create order card payload configuration
+            const orderPayload = {
+                id: randomTrackingCode,
+                discord: discordHandle,
                 items: cart.map(i => i.name).join(', '),
                 total: document.getElementById('total-price-display').innerText,
-                status: "Pending Verification Node"
+                status: "Pending Discord Payment",
+                date: new Date().toLocaleDateString()
             };
 
-            // Pull any previously saved global site orders ledger list array from browser memory
-            let allOrdersLedger = JSON.parse(localStorage.getItem('all_orders')) || [];
-            allOrdersLedger.push(newOrderPayload);
-            localStorage.setItem('all_orders', JSON.stringify(allOrdersLedger));
+            // Write straight to global web array storage slot
+            let currentLedger = JSON.parse(localStorage.getItem('all_orders')) || [];
+            currentLedger.push(orderPayload);
+            localStorage.setItem('all_orders', JSON.stringify(currentLedger));
 
+            alert(`🎉 ORDER COMPLETED SUCCESSFULLY!\n\nYour Custom Tracking Code Is:\n➡️ ${randomTrackingCode} ⬅)\n\nProvide this code to us on Discord to finalize order fulfillment!`);
+            
+            clearCart();
+            window.location.href = 'track.html';
+        }
+
+        loadCartDisplay();
+    </script>
+</body>
+</html>
