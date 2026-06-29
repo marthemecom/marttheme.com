@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mart Theme - Asset Tracking Node</title>
+    <style>
+        /* Strict Gaming Theme Colors (Blue & White Only) */
+        :root {
+            --bg-dark-cyber: #050b14;
+            --cyber-blue: #00d2ff;
+            --electric-blue: #0066ff;
+            --solid-white: #ffffff;
+            --muted-white: #b4c6ef;
+            --border-color: rgba(0, 102, 255, 0.3);
+            --success-glow: #00ffcc;
+        }
+
+        body {
+            background-color: var(--bg-dark-cyber);
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--solid-white);
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .track-header {
+            background: rgba(5, 11, 20, 0.95);
+            border-bottom: 2px solid var(--electric-blue);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .internal-logo {
+            font-family: 'Impact', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--solid-white);
+            text-shadow: 0 0 10px var(--cyber-blue);
+            text-decoration: none;
+        }
+
+        .track-wrapper {
+            max-width: 600px;
+            margin: 50px auto;
+            background: rgba(5, 11, 20, 0.85);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.15);
+        }
+
+        .track-title {
+            font-family: 'Impact', sans-serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: var(--cyber-blue);
+        }
+
+        .form-inline-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-inline-group input {
+            flex: 1;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--electric-blue);
+            border-radius: 4px;
+            color: var(--solid-white);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-inline-group input:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-cyber-search {
+            background: var(--electric-blue);
+            color: var(--solid-white);
+            border: none;
+            padding: 0 25px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+            transition: all 0.2s;
+        }
+
+        .btn-cyber-search:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-dark-cyber);
+            box-shadow: 0 0 15px var(--cyber-blue);
+        }
+
+        /* Status HUD Component Styling */
+        .status-display-box {
+            display: none;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px dashed var(--electric-blue);
+            padding: 25px;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .hud-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--muted-white);
+        }
+
+        .hud-row strong {
+            color: var(--solid-white);
+        }
+
+        .status-badge {
+            background: #ff9900;
+            color: #000;
+            padding: 2px 10px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-return-store {
+            background: transparent;
+            border: 1px solid var(--electric-blue);
+            color: var(--solid-white);
+            padding: 6px 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-return-store:hover {
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--cyber-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="track-header">
+        <a href="minecraft.html" class="internal-logo">◀ MART THEME HUB</a>
+        <a href="minecraft.html" class="btn-return-store">Return to Core</a>
+    </header>
+
+    <div class="track-wrapper">
+        <h3 class="track-title">Order Status Gateway</h3>
+        <p style="color: var(--muted-white); margin: 0; font-size: 14px;">Input your reference string to scan active order validation parameters.</p>
+        
+        <form onsubmit="locateOrderNode(); return false;">
+            <div class="form-inline-group">
+                <input type="text" id="search-utr" required placeholder="Enter Transaction UTR Reference Key...">
+                <button type="submit" class="btn-cyber-search">Scan Node</button>
+            </div>
+        </form>
+
+        <!-- Dynamic Status Display Container Box -->
+        <div id="status-hud" class="status-display-box">
+            <h4 style="color: var(--cyber-blue); margin-top: 0; margin-bottom: 15px; font-family: 'Impact', sans-serif; letter-spacing: 1px; text-transform: uppercase;">Node Transmission Receipt</h4>
+            
+            <div class="hud-row">
+                <span>Target Reference VPA:</span>
+                <strong id="hud-utr">UTR-XXXXX</strong>
+            </div>
+            <div class="hud-row">
+                <span>Verification State:</span>
+                <span><span id="hud-status" class="status-badge">Processing</span></span>
+            </div>
+            <div class="hud-row">
+                <span>Estimated Matrix Dispatch:</span>
+                <strong style="color: var(--cyber-blue)">Within 10 Minutes</strong>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function locateOrderNode() {
+            const queryUtr = document.getElementById('search-utr').value;
+            
+            // Populates the info matrix dynamically based on user lookup inputs
+            document.getElementById('hud-utr').innerText = queryUtr;
+            document.getElementById('status-hud').style.display = 'block';
+            
+            // Simulates background ledger lookup sequences cleanly
+            let statusBadge = document.getElementById('hud-status');
+            statusBadge.innerText = "Verifying Remittance";
+            statusBadge.style.background = "#ff9900";
+            
+            // Sets a delayed trigger simulating active administration check updates
+            setTimeout(() => {
+                statusBadge.innerText = "Assets Dispatched ✔";
+                statusBadge.style.background = "#00ffcc";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
