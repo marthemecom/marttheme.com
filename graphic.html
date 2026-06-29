@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mart Theme - Graphics Node</title>
     <style>
-        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
@@ -94,7 +93,6 @@
         </div>
 
         <div class="catalog-grid">
-            <!-- Video Editing -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">VIDEO EDITING</span>
@@ -105,13 +103,12 @@
                         <span class="price-gaming">500rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addNewItem('Professional Video Editing Work', 500)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNewItem('Professional Video Editing Work', 500)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Professional Video Editing Work', 500)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Professional Video Editing Work', 500)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Thumbnail -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">THUMBNAIL</span>
@@ -122,13 +119,12 @@
                         <span class="price-gaming">100rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addNewItem('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNewItem('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- YT Banner -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT BANNER</span>
@@ -139,13 +135,12 @@
                         <span class="price-gaming">79rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addNewItem('Custom YouTube Channel Banner', 79)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNewItem('Custom YouTube Channel Banner', 79)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Custom YouTube Channel Banner', 79)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Custom YouTube Channel Banner', 79)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- YT Logo -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT LOGO</span>
@@ -156,13 +151,12 @@
                         <span class="price-gaming">50rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addNewItem('Vector YouTube Channel Logo', 50)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNewItem('Vector YouTube Channel Logo', 50)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Vector YouTube Channel Logo', 50)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Vector YouTube Channel Logo', 50)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Discord Setup -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">DC SERVER SETUP</span>
@@ -173,43 +167,45 @@
                         <span class="price-gaming">700rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addNewItem('Complete Discord Server Setup', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNewItem('Complete Discord Server Setup', 700)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup', 700)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        function getActiveCart() {
-            return JSON.parse(localStorage.getItem('userCart')) || [];
+        function getDatabase() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        function refreshBadge() {
-            let cart = getActiveCart();
-            let countElement = document.getElementById('count');
-            if (countElement) {
-                countElement.innerText = cart.length;
+        function refreshHeaderBadge() {
+            let activeItems = getDatabase();
+            let badge = document.getElementById('count');
+            if (badge) {
+                badge.innerText = activeItems.length;
             }
         }
 
-        function addNewItem(name, price) {
-            let cart = getActiveCart();
-            cart.push({name: name, price: price});
-            localStorage.setItem('userCart', JSON.stringify(cart));
-            refreshBadge();
-            alert(name + " added to your cart!");
+        // ❌ FIXED: Full operational logic to save item to local storage ❌
+        function pushToStorage(itemName, itemPrice) {
+            let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('cart', JSON.stringify(activeItems));
+            refreshHeaderBadge();
+            alert(itemName + " added to your cart matrix!");
         }
 
-        function buyNewItem(name, price) {
-            let cart = getActiveCart();
-            cart.push({name: name, price: price});
-            localStorage.setItem('userCart', JSON.stringify(cart));
+        // ❌ FIXED: Full operational logic to save item and take user to checkout ❌
+        function buyNowLink(itemName, itemPrice) {
+            let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('cart', JSON.stringify(activeItems));
             window.location.href = 'cart.html';
         }
 
-        // Run badge check on page initialize loading
+        // Initialize badge value on page start
         window.onload = function() {
-            refreshBadge();
+            refreshHeaderBadge();
         }
     </script>

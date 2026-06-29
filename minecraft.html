@@ -38,23 +38,8 @@
             z-index: 1000;
         }
 
-        .internal-logo {
-            font-family: 'Impact', sans-serif;
-            font-size: 24px;
-            letter-spacing: 2px;
-            color: var(--solid-white);
-            text-shadow: 0 0 10px var(--cyber-blue);
-            text-decoration: none;
-        }
-
-        .marketplace-tabs-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 35px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 15px;
-            margin-top: 20px;
-        }
+        .internal-logo { font-family: 'Impact', sans-serif; font-size: 24px; letter-spacing: 2px; color: var(--solid-white); text-shadow: 0 0 10px var(--cyber-blue); text-decoration: none; }
+        .marketplace-tabs-bar { display: flex; gap: 15px; margin-bottom: 35px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-top: 20px; }
 
         .tab-pill {
             background: transparent;
@@ -68,117 +53,22 @@
             display: inline-block;
             transition: all 0.2s;
         }
+        .tab-pill.active-pill { background: rgba(0, 102, 255, 0.3); border-color: var(--cyber-blue); text-shadow: 0 0 5px var(--cyber-blue); }
 
-        .tab-pill.active-pill {
-            background: rgba(0, 102, 255, 0.3);
-            border-color: var(--cyber-blue);
-            text-shadow: 0 0 5px var(--cyber-blue);
-        }
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; }
+        .gaming-product-card { background: rgba(5, 11, 20, 0.85); border: 1px solid rgba(0, 102, 255, 0.3); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; box-sizing: border-box; transition: all 0.25s; }
+        .gaming-product-card:hover { border-color: var(--cyber-blue); box-shadow: 0 0 20px rgba(0, 210, 255, 0.25); transform: translateY(-3px); }
 
-        .catalog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            width: 100%;
-        }
+        .game-badge { font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--bg-dark-cyber); background: var(--cyber-blue); padding: 3px 8px; align-self: flex-start; margin-bottom: 15px; }
+        .gaming-product-card h4 { margin: 0 0 20px 0; font-size: 18px; font-weight: bold; line-height: 1.4; }
+        .price-row-gaming { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .price-gaming { font-family: 'Impact', sans-serif; font-size: 24px; color: var(--cyber-blue); }
+        .action-container-gaming { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-        .gaming-product-card {
-            background: rgba(5, 11, 20, 0.85);
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            padding: 24px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 200px;
-            box-sizing: border-box;
-            transition: all 0.25s;
-        }
-
-        .gaming-product-card:hover {
-            border-color: var(--cyber-blue);
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
-            transform: translateY(-3px);
-        }
-
-        .game-badge {
-            font-size: 10px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--bg-dark-cyber);
-            background: var(--cyber-blue);
-            padding: 3px 8px;
-            align-self: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .gaming-product-card h4 {
-            margin: 0 0 20px 0;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 1.4;
-        }
-
-        .price-row-gaming {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .price-gaming {
-            font-family: 'Impact', sans-serif;
-            font-size: 24px;
-            color: var(--cyber-blue);
-        }
-
-        .action-container-gaming {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .btn-cyber {
-            background: var(--electric-blue);
-            color: var(--solid-white);
-            border: none;
-            padding: 10px 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.3);
-            transition: all 0.2s;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .btn-cyber:hover {
-            background: var(--cyber-blue);
-            color: var(--bg-dark-cyber);
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        .btn-cyber-outline {
-            background: transparent;
-            border: 1px solid var(--electric-blue);
-            color: var(--solid-white);
-            padding: 10px 14px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .btn-cyber-outline:hover {
-            background: rgba(0, 102, 255, 0.1);
-            border-color: var(--cyber-blue);
-        }
+        .btn-cyber { background: var(--electric-blue); color: var(--solid-white); border: none; padding: 10px 14px; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 102, 255, 0.3); transition: all 0.2s; text-decoration: none; text-align: center; }
+        .btn-cyber:hover { background: var(--cyber-blue); color: var(--bg-dark-cyber); box-shadow: 0 0 15px var(--cyber-blue); }
+        .btn-cyber-outline { background: transparent; border: 1px solid var(--electric-blue); color: var(--solid-white); padding: 10px 14px; font-weight: bold; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; cursor: pointer; transition: all 0.2s; text-decoration: none; text-align: center; }
+        .btn-cyber-outline:hover { background: rgba(0, 102, 255, 0.1); border-color: var(--cyber-blue); }
     </style>
 </head>
 <body>
@@ -199,11 +89,10 @@
 
         <div class="marketplace-tabs-bar">
             <a href="minecraft.html" class="tab-pill active-pill">⛏️ Minecraft Store</a>
-            <a href="editing.html" class="tab-pill">🎬 Editing & Graphics</a>
+            <a href="graphics.html" class="tab-pill">🎬 Editing & Graphics</a>
         </div>
 
         <div class="catalog-grid">
-            <!-- MCFA ACC -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">MCFA ACC</span>
@@ -214,14 +103,12 @@
                         <span class="price-gaming">700rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <!-- Fix: added clear type values to prevent page reset -->
-                        <button type="button" class="btn-cyber-outline" onclick="addToCart('Minecraft Full Access Account', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNow('Minecraft Full Access Account', 700)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Minecraft Full Access Account', 700)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Minecraft Full Access Account', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
 
-            <!-- MC ACC -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">MC ACC</span>
@@ -232,8 +119,8 @@
                         <span class="price-gaming">400rs</span>
                     </div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="addToCart('Standard Minecraft Account', 400)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNow('Standard Minecraft Account', 400)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Standard Minecraft Account', 400)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="buyNowLink('Standard Minecraft Account', 400)">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -241,31 +128,32 @@
     </div>
 
     <script>
-        function getCart() {
-            return JSON.parse(localStorage.getItem('userCart')) || [];
+        function getDatabase() {
+            return JSON.parse(localStorage.getItem('cart')) || [];
         }
 
-        function updateBadge() {
-            let cart = getCart();
-            document.getElementById('count').innerText = cart.length;
+        function refreshHeaderBadge() {
+            let activeItems = getDatabase();
+            document.getElementById('count').innerText = activeItems.length;
         }
 
-        function addToCart(name, price) {
-            let cart = getCart();
-            cart.push({name: name, price: price});
-            localStorage.setItem('userCart', JSON.stringify(cart));
-            updateBadge();
-            alert(name + " added to cart matrix.");
+        function pushToStorage(itemName, itemPrice) {
+            let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('cart', JSON.stringify(activeItems));
+            refreshHeaderBadge();
+            alert(itemName + " locked inside system cart successfully!");
         }
 
-        function buyNow(name, price) {
-            let cart = getCart();
-            cart.push({name: name, price: price});
-            localStorage.setItem('userCart', JSON.stringify(cart));
+        // Direct item router mapping
+        function buyNowLink(itemName, itemPrice) {
+            let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('cart', JSON.stringify(activeItems));
             window.location.href = 'cart.html';
         }
 
-        updateBadge();
+        refreshHeaderBadge();
     </script>
 </body>
 </html>
