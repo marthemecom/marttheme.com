@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mart Theme - Graphics Store</title>
     <style>
-        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
@@ -94,7 +93,6 @@
         </div>
 
         <div class="catalog-grid">
-            <!-- Video Editing -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">VIDEO EDITING</span>
@@ -111,7 +109,6 @@
                 </div>
             </div>
 
-            <!-- Thumbnail -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">THUMBNAIL</span>
@@ -128,7 +125,6 @@
                 </div>
             </div>
 
-            <!-- YT Banner -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT BANNER</span>
@@ -145,7 +141,6 @@
                 </div>
             </div>
 
-            <!-- YT Logo -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">YT LOGO</span>
@@ -162,7 +157,6 @@
                 </div>
             </div>
 
-            <!-- Discord Server Setup -->
             <div class="gaming-product-card">
                 <div>
                     <span class="game-badge">DC SERVER SETUP</span>
@@ -181,5 +175,14 @@
         </div>
     </div>
 
-    <!-- ⚡ LINKS UP THE NEW DEDICATED SEPARATE OPTION ACTIONS FILE SAFELY ⚡ -->
-    <script src="graphics-actions.js"></script>
+    <script>
+        function getDatabase() {
+            return JSON.parse(localStorage.getItem('martcart')) || [];
+        }
+
+        function refreshHeaderBadge() {
+            let activeItems = getDatabase();
+            document.getElementById('count').innerText = activeItems.length;
+        }
+
+        function pushToStorage(itemName, itemPrice) {
