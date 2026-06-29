@@ -186,7 +186,6 @@
                 <button onclick="clearCart()" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size:12px; font-weight:bold; text-transform:uppercase;">[Wipe Cart]</button>
             </h3>
             
-            <!-- This container maps both minecraft and graphics items dynamically -->
             <div id="cart-items-container"></div>
 
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
@@ -217,9 +216,9 @@
     </div>
 
     <script>
-        // ❌ FIXED LOGIC: Reads 'userCart' data uniformly from both pages ❌
+        // ❌ FIXED: Strictly reading 'usercart' matching your graphics file ❌
         function loadCartDisplay() {
-            let cart = JSON.parse(localStorage.getItem('userCart')) || [];
+            let cart = JSON.parse(localStorage.getItem('usercart')) || [];
             let container = document.getElementById('cart-items-container');
             let totalDisplay = document.getElementById('total-price-display');
             
@@ -247,12 +246,12 @@
         }
 
         function clearCart() {
-            localStorage.removeItem('userCart');
+            localStorage.removeItem('usercart');
             loadCartDisplay();
         }
 
         function executePurchaseOrder() {
-            let cart = JSON.parse(localStorage.getItem('userCart')) || [];
+            let cart = JSON.parse(localStorage.getItem('usercart')) || [];
             if(cart.length === 0) {
                 alert("Your cart node has no items to authorize!");
                 return;
@@ -262,7 +261,6 @@
             window.location.href = 'minecraft.html';
         }
 
-        // Render contents immediately on screen boot
         loadCartDisplay();
     </script>
 </body>
