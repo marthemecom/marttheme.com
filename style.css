@@ -1,0 +1,106 @@
+/* Custom properties for easy color management */
+:root {
+    --bg-dark-cyber: #050b14;
+    --cyber-blue: #00d2ff;
+    --electric-blue: #0066ff;
+    --glass-blue: rgba(0, 102, 255, 0.08);
+    --solid-white: #ffffff;
+    --muted-white: #b4c6ef;
+    --border-color: rgba(0, 102, 255, 0.3);
+}
+
+/* Master Screen Toggling Mechanics (Fixes the non-working buttons) */
+.screen-view {
+    display: none !important; /* Hides everything by default */
+}
+
+.screen-active {
+    display: block !important; /* Forces only the active screen to show */
+}
+
+/* Universal Page Configuration */
+body {
+    background-color: var(--bg-dark-cyber);
+    color: var(--solid-white);
+    margin: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Master Grid Layout for Products */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Card Architectures */
+.gaming-product-card {
+    background: rgba(5, 11, 20, 0.85);
+    border: 1px solid var(--border-color);
+    padding: 24px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    box-sizing: border-box;
+    transition: all 0.25s ease-in-out;
+}
+
+/* Form inputs for checkout & login pages */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--cyber-blue);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--electric-blue);
+    border-radius: 4px;
+    color: var(--solid-white);
+    font-size: 15px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--cyber-blue);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+}
+
+/* Universal Button fallback styles */
+.btn {
+    background-color: var(--electric-blue);
+    color: var(--solid-white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background-color: var(--cyber-blue);
+    color: var(--bg-dark-cyber);
+    box-shadow: 0 0 15px var(--cyber-blue);
+}

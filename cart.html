@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mart Theme - Order Verification Terminal</title>
+    <style>
+        :root {
+            --bg-dark-cyber: #050b14;
+            --cyber-blue: #00d2ff;
+            --electric-blue: #0066ff;
+            --solid-white: #ffffff;
+            --muted-white: #b4c6ef;
+            --border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-dark-cyber);
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--solid-white);
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .cart-header {
+            background: rgba(5, 11, 20, 0.95);
+            border-bottom: 2px solid var(--electric-blue);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .internal-logo {
+            font-family: 'Impact', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--solid-white);
+            text-shadow: 0 0 10px var(--cyber-blue);
+            text-decoration: none;
+        }
+
+        .split-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .split-layout { grid-template-columns: 1fr; }
+        }
+
+        .summary-card {
+            background: rgba(5, 11, 20, 0.85);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .card-title {
+            font-family: 'Impact', sans-serif;
+            font-size: 22px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--cyber-blue);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .basket-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+            color: var(--solid-white);
+            margin-top: 25px;
+            text-transform: uppercase;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--muted-white);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--electric-blue);
+            border-radius: 4px;
+            color: var(--solid-white);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-cyber-checkout {
+            background: var(--electric-blue);
+            color: var(--solid-white);
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+            transition: all 0.2s;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            box-sizing: border-box;
+        }
+
+        .btn-cyber-checkout:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-dark-cyber);
+            box-shadow: 0 0 15px var(--cyber-blue);
+        }
+
+        .btn-return {
+            background: transparent;
+            border: 1px solid var(--electric-blue);
+            color: var(--solid-white);
+            padding: 6px 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-return:hover {
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--cyber-blue);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="cart-header">
+        <a href="minecraft.html" class="internal-logo">◀ STORE TERMINAL</a>
+        <a href="minecraft.html" class="btn-return">Continue Shopping</a>
+    </header>
+
+    <div class="split-layout">
+        <!-- LEFT COLUMN: BASKET DYNAMIC SUMMARY -->
+        <div class="summary-card">
+            <h3 class="card-title">
+                Order Node Matrix 
+                <button onclick="clearCart()" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size:12px; font-weight:bold; text-transform:uppercase;">[Wipe Cart]</button>
+            </h3>
+            
+            <!-- This container is empty on purpose. JavaScript will inject the added items here -->
+            <div id="cart-items-container"></div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 20px 0;">
+            
+            <div class="total-row">
+                <span>Total Due Invoice</span>
+                <span id="total-price-display" style="color: var(--cyber-blue)">0rs</span>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN: SHIPPING BILLING FORM -->
+        <div class="summary-card">
+            <h3 class="card-title">Client Delivery Node</h3>
+            <form onsubmit="executePurchaseOrder(); return false;">
+                <div class="form-group">
+                    <label>Full Client Name</label>
+                    <input type="text" required placeholder="Alex Mercer">
+                </div>
+
+                <div class="form-group">
+                    <label>Discord Handle / Handle ID (For Instant Delivery)</label>
+                    <input type="text" required placeholder="player_username">
+                </div>
+
+                <button type="submit" class="btn-cyber-checkout">Authorize Order Purchase</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function loadCartDisplay() {
+            let cart = JSON.parse(localStorage.getItem('userCart')) || [];
+            let container = document.getElementById('cart-items-container');
+            let totalDisplay = document.getElementById('total-price-display');
+            
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="color: var(--muted-white); font-style: italic;">Your cart matrix is empty.</p>`;
+                totalDisplay.innerText = "0rs";
+                return;
+            }
+            
+            let htmlContent = "";
+            let grandTotal = 0;
+            
+            cart.forEach(item => {
+                htmlContent += `
+                    <div class="basket-item">
+                        <span>📦 ${item.name}</span>
+                        <strong style="color: var(--cyber-blue)">${item.price}rs</strong>
+                    </div>
+                `;
+                grandTotal += item.price;
+            });
+            
+            container.innerHTML = htmlContent;
+            totalDisplay.innerText = grandTotal + "rs";
+        }
+
+        function clearCart() {
+            localStorage.removeItem('userCart');
+            loadCartDisplay();
+        }
+
+        function executePurchaseOrder() {
+            let cart = JSON.parse(localStorage.getItem('userCart')) || [];
+            if(cart.length === 0) {
+                alert("Your cart node has no items to authorize!");
+                return;
+            }
+            alert('Order Dispatched! Check your Discord handle for active asset credentials.');
+            clearCart();
+            window.location.href = 'minecraft.html';
+        }
+
+        // Render contents immediately on screen boot
+        loadCartDisplay();
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mart Theme - Secure Gateway Access</title>
+    <style>
+        /* Strict Gaming Theme Colors (Blue & White Only) */
+        :root {
+            --bg-dark-cyber: #050b14;
+            --cyber-blue: #00d2ff;
+            --electric-blue: #0066ff;
+            --solid-white: #ffffff;
+            --muted-white: #b4c6ef;
+            --border-color: rgba(0, 102, 255, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-dark-cyber);
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--solid-white);
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .auth-header {
+            background: rgba(5, 11, 20, 0.95);
+            border-bottom: 2px solid var(--electric-blue);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .internal-logo {
+            font-family: 'Impact', sans-serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--solid-white);
+            text-shadow: 0 0 10px var(--cyber-blue);
+            text-decoration: none;
+        }
+
+        .auth-wrapper {
+            max-width: 450px;
+            margin: 60px auto;
+            background: rgba(5, 11, 20, 0.85);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(0, 102, 255, 0.15);
+        }
+
+        .auth-title {
+            font-family: 'Impact', sans-serif;
+            font-size: 28px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 24px;
+            color: var(--cyber-blue);
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            color: var(--muted-white);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--electric-blue);
+            border-radius: 4px;
+            color: var(--solid-white);
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+        }
+
+        .btn-cyber-submit {
+            background: var(--electric-blue);
+            color: var(--solid-white);
+            border: none;
+            padding: 14px;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.5);
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn-cyber-submit:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-dark-cyber);
+            box-shadow: 0 0 15px var(--cyber-blue);
+        }
+
+        /* Google Integration Styling */
+        .divider-container {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--muted-white);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .divider-container::before, .divider-container::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .divider-container:not(:empty)::before { margin-right: .5em; }
+        .divider-container:not(:empty)::after { margin-left: .5em; }
+
+        .btn-google-auth {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--electric-blue);
+            color: var(--solid-white);
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-google-auth:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        .google-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 1px solid var(--electric-blue);
+            color: var(--solid-white);
+            padding: 6px 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: rgba(0, 102, 255, 0.1);
+            border-color: var(--cyber-blue);
+        }
+
+        /* Simulated Google Popup Window Modal */
+        .google-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .google-modal-box {
+            background: #ffffff;
+            color: #333333;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 8px;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            font-family: 'Roboto', sans-serif, Arial;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .google-modal-logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .google-modal-box h4 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+            color: #202124;
+        }
+
+        .google-modal-box p {
+            margin: 0 0 20px 0;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .google-account-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+        }
+
+        .google-account-pill:hover {
+            background: #f7f8f9;
+        }
+
+        .avatar-sim {
+            width: 32px;
+            height: 32px;
+            background: #0066ff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .account-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-name { font-weight: bold; font-size: 13px; color: #3c4043; }
+        .account-email { font-size: 12px; color: #70757a; }
+
+        .btn-cancel-google {
+            background: none;
+            border: none;
+            color: #1a73e8;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="auth-header">
+        <a href="index.html" class="internal-logo">◀ MART THEME</a>
+        <a href="index.html" class="btn-back">Back To Gate</a>
+    </header>
+
+    <div class="auth-wrapper">
+        <h3 class="auth-title">Security Access Portal</h3>
+        
+        <!-- Standard form path -->
+        <form onsubmit="alert('Access Authorized! Moving to marketplace node...'); window.location.href='minecraft.html'; return false;">
+            <div class="form-group">
+                <label>Account Email</label>
+                <input type="email" required placeholder="player@domain.com">
+            </div>
+            
+            <div class="form-group">
+                <label>Security Password</label>
+                <input type="password" required placeholder="••••••••••••">
+            </div>
+
+            <button type="submit" class="btn-cyber-submit">Authenticate Node</button>
+        </form>
+
+        <div class="divider-container">OR</div>
+
+        <!-- Google Logic Button Trigger -->
+        <button type="button" class="btn-google-auth" onclick="openGooglePrompt()">
+            <!-- SVG Vector Google Icon Graphic -->
+            <svg class="google-icon" viewBox="0 0 24 24">
+                <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.87 5.87 0 0 1 8.1 12.63a5.87 5.87 0 0 1 5.89-5.885c2.42 0 4.41 1.554 5.253 3.734l3.924-3.04C20.932 3.12 16.924 1 13.99 1 7.92 1 3 5.92 3 11.99s4.92 11 10.99 11c6.51 0 10.435-4.63 10.435-10.63 0-.61-.065-1.3-.18-2.075H12.24Z"/>
+            </svg>
+            Sign In with Google
+        </button>
+    </div>
+
+    <!-- ================= SIMULATED GOOGLE POPUP WINDOW MODAL ================= -->
+    <div id="google-modal" class="google-modal-overlay">
+        <div class="google-modal-box">
+            <div class="google-modal-logo">

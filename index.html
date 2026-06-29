@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mart Theme - Gaming Gateway Portal</title>
+    <style>
+        :root {
+            --bg-dark-cyber: #050b14;
+            --cyber-blue: #00d2ff;
+            --electric-blue: #0066ff;
+            --glass-blue: rgba(0, 102, 255, 0.08);
+            --solid-white: #ffffff;
+            --muted-white: #b4c6ef;
+        }
+
+        body {
+            background-color: var(--bg-dark-cyber);
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            color: var(--solid-white);
+            margin: 0;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .gateway-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .gateway-logo {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 56px;
+            letter-spacing: 4px;
+            color: var(--solid-white);
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.6);
+            margin-bottom: 10px;
+        }
+
+        .gateway-subtitle {
+            color: var(--muted-white);
+            font-size: 18px;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .gateway-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .btn-gateway {
+            background: rgba(0, 102, 255, 0.1);
+            border: 2px solid var(--electric-blue);
+            color: var(--solid-white);
+            padding: 18px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.2);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .btn-gateway:hover {
+            background: var(--cyber-blue);
+            color: var(--bg-dark-cyber);
+            box-shadow: 0 0 25px var(--cyber-blue);
+            transform: translateY(-2px);
+        }
+
+        .btn-gateway.highlight {
+            background: var(--electric-blue);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gateway-container">
+        <div class="gateway-logo">MART THEME</div>
+        <div class="gateway-subtitle">PREMIUM DIGITAL GAMING HUB PORTAL</div>
+        
+        <div class="gateway-options">
+            <!-- Automatically routes into the dedicated minecraft store page -->
+            <a href="minecraft.html" class="btn-gateway highlight">🏪 Enter Marketplace</a>
+            <a href="login.html" class="btn-gateway">🔑 Account Login</a>
+            <a href="login.html" class="btn-gateway">📝 Create Account / Sign Up</a>
+        </div>
+    </div>
+
+</body>
+</html>
