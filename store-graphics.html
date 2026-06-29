@@ -76,7 +76,8 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
+            <a href="track.html" style="font-weight: bold; color: var(--solid-white); text-decoration: none; font-size: 14px; letter-spacing: 1px;">📡 TRACK ORDER</a>
+            <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
     </header>
@@ -94,14 +95,9 @@
 
         <div class="catalog-grid">
             <div class="gaming-product-card">
+                <div><span class="game-badge">VIDEO EDITING</span><h4>Professional Video Editing Work</h4></div>
                 <div>
-                    <span class="game-badge">VIDEO EDITING</span>
-                    <h4>Professional Video Editing Work</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">500rs</span>
-                    </div>
+                    <div class="price-row-gaming"><span class="price-gaming">500rs</span></div>
                     <div class="action-container-gaming">
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Professional Video Editing Work', 500)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('Professional Video Editing Work', 500)">Buy Now</button>
@@ -110,14 +106,9 @@
             </div>
 
             <div class="gaming-product-card">
+                <div><span class="game-badge">THUMBNAIL</span><h4>High-CTR YouTube Thumbnail</h4></div>
                 <div>
-                    <span class="game-badge">THUMBNAIL</span>
-                    <h4>High-CTR YouTube Thumbnail</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">100rs</span>
-                    </div>
+                    <div class="price-row-gaming"><span class="price-gaming">100rs</span></div>
                     <div class="action-container-gaming">
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
@@ -126,14 +117,9 @@
             </div>
 
             <div class="gaming-product-card">
+                <div><span class="game-badge">YT BANNER</span><h4>Custom YouTube Channel Banner</h4></div>
                 <div>
-                    <span class="game-badge">YT BANNER</span>
-                    <h4>Custom YouTube Channel Banner</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">79rs</span>
-                    </div>
+                    <div class="price-row-gaming"><span class="price-gaming">79rs</span></div>
                     <div class="action-container-gaming">
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Custom YouTube Channel Banner', 79)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('Custom YouTube Channel Banner', 79)">Buy Now</button>
@@ -142,14 +128,9 @@
             </div>
 
             <div class="gaming-product-card">
+                <div><span class="game-badge">YT LOGO</span><h4>Vector YouTube Channel Logo</h4></div>
                 <div>
-                    <span class="game-badge">YT LOGO</span>
-                    <h4>Vector YouTube Channel Logo</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">50rs</span>
-                    </div>
+                    <div class="price-row-gaming"><span class="price-gaming">50rs</span></div>
                     <div class="action-container-gaming">
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Vector YouTube Channel Logo', 50)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('Vector YouTube Channel Logo', 50)">Buy Now</button>
@@ -158,14 +139,9 @@
             </div>
 
             <div class="gaming-product-card">
+                <div><span class="game-badge">DC SERVER SETUP</span><h4>Complete Discord Server Setup Layout</h4></div>
                 <div>
-                    <span class="game-badge">DC SERVER SETUP</span>
-                    <h4>Complete Discord Server Setup Layout</h4>
-                </div>
-                <div>
-                    <div class="price-row-gaming">
-                        <span class="price-gaming">700rs</span>
-                    </div>
+                    <div class="price-row-gaming"><span class="price-gaming">700rs</span></div>
                     <div class="action-container-gaming">
                         <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup Layout', 700)">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup Layout', 700)">Buy Now</button>
@@ -177,7 +153,7 @@
 
     <script>
         function getDatabase() {
-            return JSON.parse(localStorage.getItem('martcart')) || [];
+            return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
         }
 
         function refreshHeaderBadge() {
@@ -186,3 +162,8 @@
         }
 
         function pushToStorage(itemName, itemPrice) {
+            let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('global_mart_cart', JSON.stringify(activeItems));
+            refreshHeaderBadge();
+            alert(itemName + " added to your cart!");
