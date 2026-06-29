@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mart Theme - Minecraft Store</title>
+    <title>Mart Theme - Minecraft Node</title>
     <style>
         :root {
             --bg-dark-cyber: #050b14;
@@ -129,7 +129,7 @@
 
     <script>
         function getDatabase() {
-            return JSON.parse(localStorage.getItem('cart')) || [];
+            return JSON.parse(localStorage.getItem('martcart')) || [];
         }
 
         function refreshHeaderBadge() {
@@ -140,7 +140,7 @@
         function pushToStorage(itemName, itemPrice) {
             let activeItems = getDatabase();
             activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('cart', JSON.stringify(activeItems));
+            localStorage.setItem('martcart', JSON.stringify(activeItems));
             refreshHeaderBadge();
             alert(itemName + " added to your cart!");
         }
@@ -148,7 +148,7 @@
         function buyNowLink(itemName, itemPrice) {
             let activeItems = getDatabase();
             activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('cart', JSON.stringify(activeItems));
+            localStorage.setItem('martcart', JSON.stringify(activeItems));
             window.location.href = 'cart.html';
         }
 
