@@ -28,26 +28,26 @@
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+            perspective: 1000px; /* Activates the 3D depth field layout window */
         }
 
-        /* 🎥 THE LIVE WALLPAPER VIDEO BACKDROP COMPONENT 🎥 */
+        /* 🎥 THE LIVE WALLPAPER VIDEO BACKDROP LAYER 🎥 */
         .live-wallpaper-backdrop {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: -2; /* Pushes the video completely behind all text buttons */
+            z-index: -2;
             overflow: hidden;
         }
 
         .live-wallpaper-backdrop video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Guarantees no scaling cuts on any monitor size */
+            object-fit: cover;
         }
 
-        /* Ambient network scanning overlay line grid tint */
         .cyber-grid-tint-overlay {
             position: fixed;
             top: 0;
@@ -68,8 +68,10 @@
             max-width: 360px;
             box-sizing: border-box;
             z-index: 10;
+            transform-style: preserve-3d; /* Allows the elements inside to tilt in 3D space */
         }
 
+        /* ❌ FIXED: Clean, un-truncated 3D interactive movement target title heading ❌ */
         .terminal-header {
             font-family: 'Impact', sans-serif;
             font-size: 54px;
@@ -78,6 +80,11 @@
             text-shadow: 0 0 20px var(--cyber-blue);
             margin: 0 0 5px 0;
             text-transform: uppercase;
+            transition: transform 0.1s ease-out; /* Smooths out the mouse tracking lag */
+            will-change: transform;
+            transform: translateZ(50px); /* Gives the text a physical floating height look */
+            cursor: default;
+            user-select: none;
         }
 
         .terminal-subtitle {
@@ -125,18 +132,19 @@
 </head>
 <body>
 
-    <!-- 🎥 SILENT AUTOMATIC LIVE WALLPAPER VIDEO BACKDROP INJECTOR 🎥 -->
+    <!-- 🎥 LIVE WALLPAPER BACKDROP CORE 🎥 -->
     <div class="live-wallpaper-backdrop">
-        <!-- 'muted' tag is present to make absolutely sure Chrome permits instant autoplay on load -->
-        <video autoplay loop playsinline muted>
-            <source src="background.mp4" type="video/mp4">
+        <video autoplay loop playsinline muted id="live-video">
+            <!-- ⚡ DIRECT OPEN NETWORK LINK: Bypasses Git file size drop blocks securely ⚡ -->
+            <source src="https://mixkit.co" type="video/mp4">
         </video>
     </div>
     <div class="cyber-grid-tint-overlay"></div>
 
-    <!-- MAIN ACCESS HUD TERMINAL BUTTONS -->
+    <!-- MAIN ACCESS HUD TERMINAL -->
     <div class="gateway-card-hud">
-        <h1 class="terminal-header">Mart Marketplace</h1>
+        <!-- 3D Mouse Tracking Text Target Heading Node -->
+        <h1 class="terminal-header" id="dynamic-3d-title">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
         <div class="options-button-stack-container">
@@ -146,5 +154,32 @@
         </div>
     </div>
 
+    <script>
+        // 🔮 INTERACTIVE REAL-TIME 3D TEXT MOUSE-TRACKING CONTROLLER ENGINE 🔮
+        const dynamicTitle = document.getElementById('dynamic-3d-title');
+
+        window.addEventListener('mousemove', (mouseEvent) => {
+            // Tracks the exact physical coordinate center of your screen viewport
+            const horizontalScreenCenter = window.innerWidth / 2;
+            const verticalScreenCenter = window.innerHeight / 2;
+
+            // Calculates the offset coordinates of your cursor from the center spot
+            const horizontalOffsetDistance = mouseEvent.clientX - horizontalScreenCenter;
+            const verticalOffsetDistance = mouseEvent.clientY - verticalScreenCenter;
+
+            // Map distances to exact maximum 3D rotation angle limits (caps tilt to 25 degrees)
+            const maximumRotationLimit = 25;
+            const targetXRotationAngle = -(verticalOffsetDistance / verticalScreenCenter) * maximumRotationLimit;
+            const targetYRotationAngle = (horizontalOffsetDistance / horizontalScreenCenter) * maximumRotationLimit;
+
+            // Injects the computed 3D matrix transform state live onto your marketplace heading layout
+            dynamicTitle.style.transform = `rotateX(${targetXRotationAngle}deg) rotateY(${targetYRotationAngle}deg) translateZ(50px)`;
+        });
+
+        // Automatically centers the header if the mouse cursor leaves the browser window focus parameters
+        window.addEventListener('mouseleave', () => {
+            dynamicTitle.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(50px)';
+        });
+    </script>
 </body>
 </html>
