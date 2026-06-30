@@ -77,8 +77,7 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <!-- Pointing directly over to your operational checkout page file -->
-            <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
+            <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="cartCount">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
     </header>
@@ -101,8 +100,9 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">500rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Professional Video Editing Work', 500)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Professional Video Editing Work', 500)">Buy Now</button>
+                        <!-- ⚡ RENAMED CACHE-BUSTING TRIGGERS: forces browser to execute fresh script functions ⚡ -->
+                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Professional Video Editing Work', 500)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Professional Video Editing Work', 500)">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -113,8 +113,8 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">100rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -125,8 +125,8 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">79rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Custom YouTube Channel Banner', 79)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Custom YouTube Channel Banner', 79)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Custom YouTube Channel Banner', 79)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Custom YouTube Channel Banner', 79)">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -137,8 +137,8 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">50rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Vector YouTube Channel Logo', 50)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Vector YouTube Channel Logo', 50)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Vector YouTube Channel Logo', 50)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Vector YouTube Channel Logo', 50)">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -149,26 +149,21 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">700rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="pushToStorage('Complete Discord Server Setup Layout', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="buyNowLink('Complete Discord Server Setup Layout', 700)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Complete Discord Server Setup Layout', 700)">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Complete Discord Server Setup Layout', 700)">Buy Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- ⚡ HIGH-UTILITY FUNCTION SYNC ENGINE ⚡ -->
+    <!-- ⚡ BRAND NEW FRESH ENGINE TRACK CONTEXT ⚡ -->
     <script>
-        // Reads from the correct shared database key used on your systems
-        function getDatabase() {
+        function loadCurrentCartList() {
             return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
         }
 
-        function refreshHeaderBadge() {
-            let activeItems = getDatabase();
-            let badgeNode = document.getElementById('count');
-            if (badgeNode) {
-                badgeNode.innerText = activeItems.length;
-            }
-        }
-
+        function updateGraphicsHeaderCounter() {
+            let currentCartList = loadCurrentCartList();
+            let countElement = document.getElementById('cartCount');
+            if (countElement) {
