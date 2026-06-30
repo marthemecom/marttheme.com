@@ -28,7 +28,6 @@
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
-            perspective: 1000px; /* Activates the 3D depth field layout window */
         }
 
         /* 🎥 THE LIVE WALLPAPER VIDEO BACKDROP LAYER 🎥 */
@@ -68,10 +67,9 @@
             max-width: 360px;
             box-sizing: border-box;
             z-index: 10;
-            transform-style: preserve-3d; /* Allows the elements inside to tilt in 3D space */
         }
 
-        /* ❌ FIXED: Clean, un-truncated 3D interactive movement target title heading ❌ */
+        /* ❌ FIXED: AUTOMATIC 3D JUMP AND DOWN BOUNCE ENGINE ❌ */
         .terminal-header {
             font-family: 'Impact', sans-serif;
             font-size: 54px;
@@ -80,11 +78,25 @@
             text-shadow: 0 0 20px var(--cyber-blue);
             margin: 0 0 5px 0;
             text-transform: uppercase;
-            transition: transform 0.1s ease-out; /* Smooths out the mouse tracking lag */
-            will-change: transform;
-            transform: translateZ(50px); /* Gives the text a physical floating height look */
+            display: inline-block;
             cursor: default;
             user-select: none;
+            
+            /* Calls the unblockable 3D jump keyframe animation below */
+            animation: cyberJumpBounce 2s ease-in-out infinite;
+            will-change: transform;
+        }
+
+        /* 🔮 Pure CSS 3D Jump & Down Keyframe Loop 🔮 */
+        @keyframes cyberJumpBounce {
+            0%, 100% {
+                transform: translateY(0); /* Normal center starting place */
+                text-shadow: 0 0 20px var(--cyber-blue);
+            }
+            50% {
+                transform: translateY(-15px); /* Jumps straight up smoothly */
+                text-shadow: 0 10px 25px rgba(0, 210, 255, 0.6); /* Glow follows the text height */
+            }
         }
 
         .terminal-subtitle {
@@ -135,16 +147,16 @@
     <!-- 🎥 LIVE WALLPAPER BACKDROP CORE 🎥 -->
     <div class="live-wallpaper-backdrop">
         <video autoplay loop playsinline muted id="live-video">
-            <!-- ⚡ DIRECT OPEN NETWORK LINK: Bypasses Git file size drop blocks securely ⚡ -->
-            <source src="https://mixkit.co" type="video/mp4">
+            <!-- First attempts to read your local background file layout -->
+            <source src="background.mp4" type="video/mp4">
         </video>
     </div>
     <div class="cyber-grid-tint-overlay"></div>
 
     <!-- MAIN ACCESS HUD TERMINAL -->
     <div class="gateway-card-hud">
-        <!-- 3D Mouse Tracking Text Target Heading Node -->
-        <h1 class="terminal-header" id="dynamic-3d-title">Mart Marketplace</h1>
+        <!-- The automatic 3D jump-animated text header -->
+        <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
         <div class="options-button-stack-container">
@@ -155,30 +167,24 @@
     </div>
 
     <script>
-        // 🔮 INTERACTIVE REAL-TIME 3D TEXT MOUSE-TRACKING CONTROLLER ENGINE 🔮
-        const dynamicTitle = document.getElementById('dynamic-3d-title');
-
-        window.addEventListener('mousemove', (mouseEvent) => {
-            // Tracks the exact physical coordinate center of your screen viewport
-            const horizontalScreenCenter = window.innerWidth / 2;
-            const verticalScreenCenter = window.innerHeight / 2;
-
-            // Calculates the offset coordinates of your cursor from the center spot
-            const horizontalOffsetDistance = mouseEvent.clientX - horizontalScreenCenter;
-            const verticalOffsetDistance = mouseEvent.clientY - verticalScreenCenter;
-
-            // Map distances to exact maximum 3D rotation angle limits (caps tilt to 25 degrees)
-            const maximumRotationLimit = 25;
-            const targetXRotationAngle = -(verticalOffsetDistance / verticalScreenCenter) * maximumRotationLimit;
-            const targetYRotationAngle = (horizontalOffsetDistance / horizontalScreenCenter) * maximumRotationLimit;
-
-            // Injects the computed 3D matrix transform state live onto your marketplace heading layout
-            dynamicTitle.style.transform = `rotateX(${targetXRotationAngle}deg) rotateY(${targetYRotationAngle}deg) translateZ(50px)`;
-        });
-
-        // Automatically centers the header if the mouse cursor leaves the browser window focus parameters
-        window.addEventListener('mouseleave', () => {
-            dynamicTitle.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(50px)';
+        // 📡 AUTOMATIC VIDEO CACHE-FAILBACK ENGINE 📡
+        window.addEventListener('DOMContentLoaded', () => {
+            const videoElement = document.getElementById('live-video');
+            
+            // If Render fails to load the background.mp4 path, this instantly switches to a backup gaming loop URL
+            videoElement.addEventListener('error', function() {
+                console.log("⚠️ background.mp4 dropped by server size limits. Deploying unblockable open network loop fallback...");
+                videoElement.src = "https://mixkit.co";
+                videoElement.play().catch(e => console.log("Autoplay context initialization delay: ", e));
+            }, true);
+            
+            // Double check to execute fallback path if the source remains unrendered 
+            setTimeout(() => {
+                if (videoElement.networkState === 3 || videoElement.readyState === 0) {
+                    videoElement.src = "https://mixkit.co";
+                    videoElement.play().catch(e => console.log(e));
+                }
+            }, 1000);
         });
     </script>
 </body>
