@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mart Theme - Graphics Store</title>
     <style>
+        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
@@ -76,7 +77,6 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <a href="track.html" style="font-weight: bold; color: var(--solid-white); text-decoration: none; font-size: 14px; letter-spacing: 1px;">📡 TRACK ORDER</a>
             <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
@@ -156,7 +156,7 @@
         </div>
     </div>
 
-    <!-- ❌ FIXED LOGIC BLOCK: Synchronized with global_mart_cart database engine ❌ -->
+    <!-- ⚡ FIXED SCRIPT BLOCK: Points strictly to global_mart_cart ⚡ -->
     <script>
         function getDatabase() {
             return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
@@ -169,3 +169,5 @@
 
         function pushToStorage(itemName, itemPrice) {
             let activeItems = getDatabase();
+            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
+            localStorage.setItem('global_mart_cart', JSON.stringify(activeItems));
