@@ -46,6 +46,7 @@
 
         .btn-cyber-submit { background: var(--electric-blue); color: var(--solid-white); border: none; padding: 14px; width: 100%; font-weight: bold; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); transition: all 0.2s; margin-top: 10px; }
         .btn-cyber-submit:hover { background: var(--cyber-blue); color: var(--bg-dark-cyber); box-shadow: 0 0 15px var(--cyber-blue); }
+        
         .divider-container { display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--muted-white); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
         .divider-container::before, .divider-container::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-color); }
         .divider-container:not(:empty)::before { margin-right: .5em; }
@@ -85,7 +86,7 @@
 
         <div class="divider-container">OR</div>
 
-        <!-- ⚡ TARGET INJECTION: Clean, Minimal Button Triggered Google Sign In ⚡ -->
+        <!-- ⚡ TARGET FIXED LINK INTERFACE BUTTON TRIGGER ⚡ -->
         <button type="button" class="btn-custom-google" onclick="triggerBypassAuth()">
             <svg class="google-vector-icon" viewBox="0 0 24 24">
                 <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.87 5.87 0 0 1 8.1 12.63a5.87 5.87 0 0 1 5.89-5.885c2.42 0 4.41 1.554 5.253 3.734l3.924-3.04C20.932 3.12 16.924 1 13.99 1 7.92 1 3 5.92 3 11.99s4.92 11 10.99 11c6.51 0 10.435-4.63 10.435-10.63 0-.61-.065-1.3-.18-2.075H12.24Z"/>
@@ -95,15 +96,14 @@
     </div>
 
     <script>
-        // ❌ REPAIRED: Fully Linked Client ID & Google Auth URL parameters ❌
         function triggerBypassAuth() {
-            // Your exact requested Developer Client Identity Key string injected safely
+            // Your custom active Client ID 
             const clientID = "335973319597-25qb156v1l8492pr0hbc9o6hip8e0rnc.apps.googleusercontent.com";
             
-            // Auto-detects the origin path location link variables seamlessly
+            // Auto-detect redirect domain origin link path location safely
             const redirectLocationUri = window.location.origin + window.location.pathname;
             
-            // Forms parameters accurately to prevent response_type Error 400 crashes
+            // Packs variables together smoothly into an unblockable real target URL string 
             const googleParams = new URLSearchParams();
             googleParams.append('client_id', clientID);
             googleParams.append('redirect_uri', redirectLocationUri);
@@ -111,7 +111,7 @@
             googleParams.append('scope', 'https://googleapis.com https://googleapis.com');
             googleParams.append('state', 'mart_marketplace_session');
             
-            // Routes window focus right onto the verified Google OAuth Endpoint Gateway link
+            // Redirects straight to the verified Google login prompt view screen
             window.location.href = "https://google.com?" + googleParams.toString();
         }
 
@@ -123,13 +123,13 @@
             window.location.href = 'minecraft.html';
         }
 
-        // 🔄 AUTOMATIC RECEIPT PROCESSING: Captures user profile packets upon redirect completion 🔄
+        // 🔄 AUTOMATIC REAL-TIME USER DATA EXTRACTION LOOPS 🔄
         window.onload = function() {
             const URLHashParameters = new URLSearchParams(window.location.hash.substring(1));
             const activeToken = URLHashParameters.get('access_token');
 
             if (activeToken) {
-                // Fetch profile parameters using Google's raw text data endpoint logs
+                // Instantly reads your user profile information packet data straight from Google API channels
                 fetch('https://googleapis.com', {
                     headers: { 'Authorization': `Bearer ${activeToken}` }
                 })
@@ -140,14 +140,14 @@
                         email: profileData.email,
                         picture: profileData.picture
                     };
-                    // Save into central memory network storage slot
+                    // Writes into central memory network storage slot
                     localStorage.setItem('authenticated_user_node', JSON.stringify(authenticatedUser));
                     
                     alert(`Google Authentication Successful! Welcome, ${authenticatedUser.name}.`);
-                    window.location.href = "index.html"; // Bounces user home to load profile cards!
+                    window.location.href = "index.html"; // Returns user home to load profile widgets!
                 })
                 .catch(err => {
-                    console.error("Profile payload sync drop error log:", err);
+                    console.error("Profile load sync dropped log error:", err);
                     window.location.href = "minecraft.html";
                 });
             }
