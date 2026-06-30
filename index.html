@@ -58,12 +58,16 @@
             margin: 0 0 35px 0;
         }
 
+        /* ❌ FIXED: Set layout dimensions to guarantee card rendering on live server roots ❌ */
         .auth-container-wrapper {
-            background: rgba(5, 11, 20, 0.85);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
+            background: rgba(5, 11, 20, 0.85) !important;
+            border: 1px solid var(--border-color) !important;
+            padding: 40px !important;
+            border-radius: 4px !important;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.2) !important;
+            display: block !important;
+            min-width: 280px !important;
+            min-height: 50px !important;
         }
     </style>
 </head>
