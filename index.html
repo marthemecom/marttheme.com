@@ -23,36 +23,18 @@
             height: 100%;
             font-family: 'Segoe UI', system-ui, sans-serif;
             background-color: var(--bg-dark-cyber);
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
             overflow: hidden;
         }
 
-        /* 🎥 THE LIVE WALLPAPER VIDEO COMPONENT 🎥 */
-        .video-background-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .video-background-layer video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* CENTRAL INTERFACE PANEL HUB */
         .gateway-card-hud {
-            position: relative;
             height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: rgba(5, 11, 20, 0.6);
-            backdrop-filter: blur(4px);
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
@@ -76,56 +58,16 @@
             margin: 0 0 35px 0;
         }
 
-        /* ❌ FIXED: Standard block dimensions force Google scripts to render instantly ❌ */
         .auth-container-wrapper {
             background: rgba(5, 11, 20, 0.85);
             border: 1px solid var(--border-color);
-            padding: 30px;
+            padding: 40px;
             border-radius: 4px;
             box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
-            width: 320px; /* Precise physical width width requested by Google script layers */
-            box-sizing: border-box;
-        }
-
-        .btn-audio-activate {
-            background: var(--electric-blue);
-            color: var(--solid-white);
-            border: none;
-            padding: 12px 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
-            transition: all 0.2s;
-            font-size: 12px;
-            width: 100%;
-            margin-bottom: 20px; /* Separates the button elements cleanly */
-        }
-
-        .btn-audio-activate:hover {
-            background: var(--cyber-blue);
-            color: #000;
-            box-shadow: 0 0 20px var(--cyber-blue);
-        }
-
-        /* Added clean container layout positioning slot for the Google script hook */
-        .google-render-target-row {
-            width: 100%;
-            display: block;
-            min-height: 40px;
         }
     </style>
 </head>
 <body>
-
-    <!-- 🔊 LIVE VIDEO WALLPAPER BACKDROP CORE 🔊 -->
-    <div class="video-background-layer">
-        <video id="terminal-live-wallpaper" autoplay loop playsinline muted>
-            <!-- ⚠️ Replace this video address with your exact .mp4 background loop asset link string ⚠️ -->
-            <source src="https://w3schools.com" type="video/mp4">
-        </video>
-    </div>
 
     <!-- MAIN ACCESS HUD TERMINAL -->
     <div class="gateway-card-hud">
@@ -133,9 +75,6 @@
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
         <div class="auth-container-wrapper">
-            <!-- UNMUTING CONTROL BUTTON NODE -->
-            <button type="button" id="audio-btn" class="btn-audio-activate" onclick="triggerAutomaticAudioSync()">🔊 Enable Wallpaper Sound</button>
-
             <!-- Google Client Script Configuration Element Row -->
             <div id="g_id_onload"
                 data-client_id="://googleusercontent.com"
@@ -145,39 +84,19 @@
                 data-auto_select="false">
             </div>
 
-            <!-- ❌ FIXED LAYER: Isolated row target block forcing Google Single Sign On to mount on screen ❌ -->
-            <div class="google-render-target-row">
-                <div class="g_id_signin"
-                    data-type="standard"
-                    data-shape="rectangular"
-                    data-theme="filled_blue"
-                    data-text="signin_with"
-                    data-size="large"
-                    data-logo_alignment="left"
-                    data-width="258"> <!-- Formatted matching layout button dimensions directly -->
-                </div>
+            <!-- Standard Native Google Single Sign On UI Button Render Container Slot -->
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="filled_blue"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
             </div>
         </div>
     </div>
 
     <script>
-        function triggerAutomaticAudioSync() {
-            let wallpaperVideo = document.getElementById('terminal-live-wallpaper');
-            if (wallpaperVideo) {
-                wallpaperVideo.muted = false; 
-                wallpaperVideo.play();        
-            }
-            
-            let btn = document.getElementById('audio-btn');
-            if (btn) {
-                btn.innerText = "🎵 Sound Frequencies Online";
-                btn.style.background = "rgba(0, 210, 255, 0.1)";
-                btn.style.color = "var(--cyber-blue)";
-                btn.style.border = "1px solid var(--cyber-blue)";
-                btn.disabled = true;
-            }
-        }
-
         function onGoogleAuthSuccess(googleCredentialPayload) {
             console.log("Account Identity Verified Token:", googleCredentialPayload.credential);
             alert("👑 Access Granted! Initializing market sector components...");
