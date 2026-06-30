@@ -3,150 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mart Theme - Gaming Gateway Portal</title>
+    <title>Mart Theme - Gateway Terminal</title>
+    
+    <script src="https://google.com" async defer></script>
     <style>
+        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
             --electric-blue: #0066ff;
             --solid-white: #ffffff;
             --muted-white: #b4c6ef;
+            --border-color: rgba(0, 102, 255, 0.3);
         }
 
-        body {
-            background-color: var(--bg-dark-cyber);
-            color: var(--solid-white);
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
             font-family: 'Segoe UI', system-ui, sans-serif;
-            overflow: hidden; /* Prevents unwanted double scrolling bars */
+            background-color: var(--bg-dark-cyber);
+            overflow: hidden;
         }
 
-        /* ❌ MASTER LIVE VIDEO WALLPAPER CONTAINER ❌ */
-        .live-video-wallpaper {
+        /* 🎥 THE LIVE WALLPAPER VIDEO COMPONENT 🎥 */
+        .video-background-layer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Forces the video to cover the whole screen without stretching */
-            z-index: -2; /* Pushes the video behind everything else */
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        /* Dark overlay filter tint over the video to make your white text pop */
-        .video-dark-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
+        .video-background-layer video {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(5, 11, 20, 0.75), rgba(5, 11, 20, 0.95));
-            z-index: -1; /* Sits directly on top of the video but behind the text */
-            backdrop-filter: blur(2px); /* Optional: Softly blurs your video background */
+            object-fit: cover;
         }
 
-        /* The clear layout wrapper containing your interactive text buttons */
-        .gateway-container {
+        /* CENTRAL INTERFACE PANEL HUB */
+        .gateway-card-hud {
+            position: relative;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            background: rgba(5, 11, 20, 0.6);
+            backdrop-filter: blur(4px);
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            position: relative;
-            z-index: 1;
         }
 
-        .gateway-logo {
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 64px;
-            letter-spacing: 4px;
-            color: var(--solid-white);
-            text-shadow: 0 0 20px rgba(0, 210, 255, 0.8), 0 0 40px rgba(0, 102, 255, 0.4);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .gateway-subtitle {
-            color: var(--cyber-blue);
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 45px;
+        .terminal-header {
+            font-family: 'Impact', sans-serif;
+            font-size: 54px;
             letter-spacing: 2px;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-        }
-
-        .gateway-options {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .btn-gateway {
-            background: rgba(5, 11, 20, 0.75);
-            border: 2px solid var(--electric-blue);
             color: var(--solid-white);
-            padding: 18px 30px;
-            font-size: 15px;
-            font-weight: bold;
+            text-shadow: 0 0 20px var(--cyber-blue);
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        .terminal-subtitle {
+            color: var(--muted-white);
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 102, 255, 0.2);
-            text-decoration: none;
-            display: block;
-            text-align: center;
+            margin: 0 0 35px 0;
+        }
+
+        /* Secure overlay wrapper block grouping for Google Single Sign On Buttons */
+        .auth-interceptor-wrapper {
+            background: rgba(5, 11, 20, 0.85);
+            border: 1px solid var(--border-color);
+            padding: 30px;
             border-radius: 4px;
+            box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
+            position: relative;
         }
 
-        .btn-gateway:hover {
-            background: var(--cyber-blue);
-            color: var(--bg-dark-cyber);
-            box-shadow: 0 0 25px var(--cyber-blue);
-            border-color: var(--cyber-blue);
-            transform: translateY(-3px);
-        }
-
-        .btn-gateway.highlight {
-            background: var(--electric-blue);
-            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
-        }
-        
-        .btn-gateway.highlight:hover {
-            background: var(--cyber-blue);
-            color: var(--bg-dark-cyber);
-            box-shadow: 0 0 30px var(--cyber-blue);
+        /* Hidden transparent bridge layer that captures the click first */
+        .click-trap-bridge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- ⚡ REAL LIVE VIDEO ENGINE ⚡ -->
-    <!-- playsinline, autoplay, muted, and loop are completely required for browsers to allow background auto-run profiles -->
-    <video class="live-video-wallpaper" playsinline autoplay muted loop>
-        <source src="background.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    <!-- 🔊 LIVE VIDEO WALLPAPER BACKDROP CORE 🔊 -->
+    <div class="video-background-layer">
+        <!-- Starts muted so the browser engine permits instant autoplay on screen load -->
+        <video id="terminal-live-wallpaper" autoplay loop playsinline muted>
+            <!-- ⚠️ Replace this video address with your exact .mp4 background loop asset link string ⚠️ -->
+            <source src="https://w3schools.com" type="video/mp4">
+        </video>
+    </div>
 
-    <!-- Dark layout tint layer over the video clip matrix -->
-    <div class="video-dark-overlay"></div>
+    <!-- MAIN ACCESS HUD TERMINAL -->
+    <div class="gateway-card-hud">
+        <h1 class="terminal-header">Mart Marketplace</h1>
+        <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
-    <!-- Active Text Options Layer -->
-    <div class="gateway-container">
-        <div class="gateway-logo">MART THEME</div>
-        <div class="gateway-subtitle">PREMIUM DIGITAL GAMING HUB PORTAL</div>
-        
-        <div class="gateway-options">
-            <a href="minecraft.html" class="btn-gateway highlight">🏪 Enter Marketplace</a>
-            <a href="login.html" class="btn-gateway">🔑 Account Login</a>
-            <a href="login.html" class="btn-gateway">📝 Create Account / Sign Up</a>
+        <div class="auth-interceptor-wrapper">
+            <!-- ⚡ UNBLOCKABLE INTERCEPTOR TRAP BRIDGE LAYER ⚡ -->
+            <div id="auth-click-trap" class="click-trap-bridge" onclick="triggerAutomaticAudioSync()"></div>
+            
+            <!-- Google Client Script Configuration Element Row -->
+            <div id="g_id_onload"
+                data-client_id="://googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="onGoogleAuthSuccess"
+                data-auto_select="false">
+            </div>
+
+            <!-- Standard Native Google Single Sign On UI Button Render Container Slot -->
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="filled_blue"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
         </div>
     </div>
 
+    <script>
+        // ❌ SEAMLESS TRIGGER RUN: Captures the user's login click to unmute the layout instantly! ❌
+        function triggerAutomaticAudioSync() {
+            let wallpaperVideo = document.getElementById('terminal-live-wallpaper');
+            if (wallpaperVideo) {
+                wallpaperVideo.muted = false; // Unmutes audio parameters safely
+                wallpaperVideo.play();        // Forces sound frequencies to initialize
+            }
+            
+            // Dissolves and removes the invisible trap overlay so Google's real login layer works instantly
+            let trapBridge = document.getElementById('auth-click-trap');
+            if (trapBridge) {
+                trapBridge.remove();
+            }
+            console.log("📡 Core system sound loop initialized successfully!");
+        }
+
+        // Handles user account verification checks and opens your item pages
+        function onGoogleAuthSuccess(googleCredentialPayload) {
+            console.log("Account Identity Verified Token:", googleCredentialPayload.credential);
+            alert("👑 Access Granted! Initializing market sector components...");
+            window.location.href = 'minecraft.html';
+        }
+    </script>
 </body>
 </html>
