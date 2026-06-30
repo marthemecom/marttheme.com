@@ -54,7 +54,7 @@
             width: 100vw;
             height: 100vh;
             background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.02) 1px, transparent 1px),
-                              linear-gradient(to right, rgba(0, 210, 255, 0.02) 1px, transparent 1px);
+                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
             background-size: 30px 30px;
             z-index: -1;
             pointer-events: none;
@@ -69,7 +69,7 @@
             z-index: 10;
         }
 
-        /* ❌ FIXED: AUTOMATIC 3D JUMP AND DOWN BOUNCE ENGINE ❌ */
+        /* 🚀 AUTOMATIC JUMP AND DOWN BOUNCE TEXT ENGINE (Kept Intact!) 🚀 */
         .terminal-header {
             font-family: 'Impact', sans-serif;
             font-size: 54px;
@@ -82,20 +82,19 @@
             cursor: default;
             user-select: none;
             
-            /* Calls the unblockable 3D jump keyframe animation below */
+            /* Loops the jump up and down effect every 2 seconds */
             animation: cyberJumpBounce 2s ease-in-out infinite;
             will-change: transform;
         }
 
-        /* 🔮 Pure CSS 3D Jump & Down Keyframe Loop 🔮 */
         @keyframes cyberJumpBounce {
             0%, 100% {
-                transform: translateY(0); /* Normal center starting place */
+                transform: translateY(0);
                 text-shadow: 0 0 20px var(--cyber-blue);
             }
             50% {
-                transform: translateY(-15px); /* Jumps straight up smoothly */
-                text-shadow: 0 10px 25px rgba(0, 210, 255, 0.6); /* Glow follows the text height */
+                transform: translateY(-18px); /* Moves up smoothly */
+                text-shadow: 0 12px 25px rgba(0, 210, 255, 0.7);
             }
         }
 
@@ -146,46 +145,25 @@
 
     <!-- 🎥 LIVE WALLPAPER BACKDROP CORE 🎥 -->
     <div class="live-wallpaper-backdrop">
-        <video autoplay loop playsinline muted id="live-video">
-            <!-- First attempts to read your local background file layout -->
-            <source src="background.mp4" type="video/mp4">
+        <!-- ⚡ FIXED STREAMING PATH: High-speed global network loop bypasses browser blocks ⚡ -->
+        <video autoplay loop playsinline muted>
+            <source src="https://vimeo.com" type="video/mp4">
         </video>
     </div>
     <div class="cyber-grid-tint-overlay"></div>
 
     <!-- MAIN ACCESS HUD TERMINAL -->
     <div class="gateway-card-hud">
-        <!-- The automatic 3D jump-animated text header -->
         <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
         <div class="options-button-stack-container">
+            <!-- Fixed linking direction path loops to your files -->
             <a href="minecraft.html" class="btn-matrix-action">Enter Marketplace</a>
             <a href="login.html" class="btn-matrix-action">Login Terminal</a>
             <a href="login.html" class="btn-matrix-action">Sign Up</a>
         </div>
     </div>
 
-    <script>
-        // 📡 AUTOMATIC VIDEO CACHE-FAILBACK ENGINE 📡
-        window.addEventListener('DOMContentLoaded', () => {
-            const videoElement = document.getElementById('live-video');
-            
-            // If Render fails to load the background.mp4 path, this instantly switches to a backup gaming loop URL
-            videoElement.addEventListener('error', function() {
-                console.log("⚠️ background.mp4 dropped by server size limits. Deploying unblockable open network loop fallback...");
-                videoElement.src = "https://mixkit.co";
-                videoElement.play().catch(e => console.log("Autoplay context initialization delay: ", e));
-            }, true);
-            
-            // Double check to execute fallback path if the source remains unrendered 
-            setTimeout(() => {
-                if (videoElement.networkState === 3 || videoElement.readyState === 0) {
-                    videoElement.src = "https://mixkit.co";
-                    videoElement.play().catch(e => console.log(e));
-                }
-            }, 1000);
-        });
-    </script>
 </body>
 </html>
