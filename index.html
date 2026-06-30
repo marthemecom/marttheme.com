@@ -58,7 +58,6 @@
             margin: 0 0 40px 0;
         }
 
-        /* 📋 THE ORIGINAL 3-LINE BUTTON STACK CONTAINER 📋 */
         .options-button-stack-container {
             display: flex;
             flex-direction: column;
@@ -92,6 +91,64 @@
             text-shadow: 0 0 5px var(--solid-white);
             transform: translateY(-2px);
         }
+
+        /* 👤 REAL-TIME CYBER USER PROFILE HUD STYLING 👤 */
+        .user-profile-hud-card {
+            display: none; /* Hidden by default */
+            background: rgba(5, 11, 20, 0.9);
+            border: 1px solid var(--cyber-blue);
+            padding: 25px;
+            border-radius: 4px;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .profile-avatar-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--cyber-blue);
+            box-shadow: 0 0 15px var(--cyber-blue);
+            margin: 0 auto 15px auto;
+            object-fit: cover;
+            background: #000;
+        }
+
+        .profile-title-name {
+            font-family: 'Impact', sans-serif;
+            font-size: 22px;
+            color: var(--solid-white);
+            letter-spacing: 1px;
+            margin: 0 0 5px 0;
+            text-transform: uppercase;
+        }
+
+        .profile-meta-email {
+            color: var(--muted-white);
+            font-size: 13px;
+            margin: 0 0 25px 0;
+        }
+
+        .btn-cyber-logout {
+            background: transparent;
+            color: #ff4d4d;
+            border: 1px solid #ff4d4d;
+            padding: 10px;
+            width: 100%;
+            font-weight: bold;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.2s;
+        }
+        .btn-cyber-logout:hover {
+            background: #ff4d4d;
+            color: #000;
+            box-shadow: 0 0 15px #ff4d4d;
+        }
     </style>
 </head>
 <body>
@@ -100,18 +157,51 @@
         <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
-        <!-- ⚡ FIXED ROADS: Pointing strictly to your pre-existing files ⚡ -->
-        <div class="options-button-stack-container">
-            <!-- Line 1: Enter Marketplace -->
+        <!-- ⚡ STANDARD 3-LINE BUTTON STACK LINK ROW ⚡ -->
+        <div id="logged-out-stack" class="options-button-stack-container">
             <a href="minecraft.html" class="btn-matrix-action">Enter Marketplace</a>
-            
-            <!-- Line 2: Login Terminal (Routes to your premium Google login page) -->
             <a href="login.html" class="btn-matrix-action">Login Terminal</a>
-            
-            <!-- Line 3: Sign Up (Routes to the same terminal node handler page) -->
             <a href="login.html" class="btn-matrix-action">Sign Up</a>
+        </div>
+
+        <!-- ⚡ DYNAMIC LIVE USER PROFILE CARD NODE ⚡ -->
+        <div id="logged-in-profile-hud" class="user-profile-hud-card">
+            <img id="user-hud-avatar" src="" alt="Avatar Node" class="profile-avatar-circle">
+            <h3 id="user-hud-name" class="profile-title-name">Authenticated User</h3>
+            <p id="user-hud-email" class="profile-meta-email">user@domain.com</p>
+            
+            <a href="minecraft.html" class="btn-matrix-action" style="margin-bottom:15px; padding:12px; font-size:12px;">Launch Dashboard</a>
+            <button type="button" class="btn-cyber-logout" onclick="executeProfileLogout()">Terminate Profile Session</button>
         </div>
     </div>
 
+    <script>
+        function checkActiveProfileSession() {
+            // Extracts saved profile data strings from shared local website memory
+            let sessionData = JSON.parse(localStorage.getItem('authenticated_user_node'));
+            
+            if (sessionData) {
+                // Hides the standard 3-line links stack panel layout
+                document.getElementById('logged-out-stack').style.display = 'none';
+                
+                // Populates Google data parameters dynamically into your profile card rows
+                document.getElementById('user-hud-avatar').src = sessionData.picture || 'https://qrserver.com';
+                document.getElementById('user-hud-name').innerText = sessionData.name;
+                document.getElementById('user-hud-email').innerText = sessionData.email;
+                
+                // Reveals the glowing Profile Hub block component on screen natively
+                document.getElementById('logged-in-profile-hud').style.display = 'block';
+            }
+        }
+
+        function executeProfileLogout() {
+            localStorage.removeItem('authenticated_user_node');
+            alert("🔒 Session terminated successfully! Reverting core to baseline.");
+            window.location.reload();
+        }
+
+        // Run checking arrays immediately on window load initialization
+        window.addEventListener('DOMContentLoaded', checkActiveProfileSession);
+    </script>
 </body>
 </html>
