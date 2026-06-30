@@ -76,16 +76,15 @@
             margin: 0 0 35px 0;
         }
 
+        /* ❌ FIXED: Standard block dimensions force Google scripts to render instantly ❌ */
         .auth-container-wrapper {
             background: rgba(5, 11, 20, 0.85);
             border: 1px solid var(--border-color);
             padding: 30px;
             border-radius: 4px;
             box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            width: 320px; /* Precise physical width width requested by Google script layers */
+            box-sizing: border-box;
         }
 
         .btn-audio-activate {
@@ -101,6 +100,7 @@
             transition: all 0.2s;
             font-size: 12px;
             width: 100%;
+            margin-bottom: 20px; /* Separates the button elements cleanly */
         }
 
         .btn-audio-activate:hover {
@@ -108,13 +108,19 @@
             color: #000;
             box-shadow: 0 0 20px var(--cyber-blue);
         }
+
+        /* Added clean container layout positioning slot for the Google script hook */
+        .google-render-target-row {
+            width: 100%;
+            display: block;
+            min-height: 40px;
+        }
     </style>
 </head>
 <body>
 
     <!-- 🔊 LIVE VIDEO WALLPAPER BACKDROP CORE 🔊 -->
     <div class="video-background-layer">
-        <!-- Starts muted so the browser engine permits instant autoplay on screen load -->
         <video id="terminal-live-wallpaper" autoplay loop playsinline muted>
             <!-- ⚠️ Replace this video address with your exact .mp4 background loop asset link string ⚠️ -->
             <source src="https://w3schools.com" type="video/mp4">
@@ -127,7 +133,7 @@
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
         <div class="auth-container-wrapper">
-            <!-- 🔊 UNMUTING CONTROL BUTTON NODE: Restores browser authorization safely 🔊 -->
+            <!-- UNMUTING CONTROL BUTTON NODE -->
             <button type="button" id="audio-btn" class="btn-audio-activate" onclick="triggerAutomaticAudioSync()">🔊 Enable Wallpaper Sound</button>
 
             <!-- Google Client Script Configuration Element Row -->
@@ -139,20 +145,22 @@
                 data-auto_select="false">
             </div>
 
-            <!-- Standard Native Google Single Sign On UI Button Render Container Slot -->
-            <div class="g_id_signin"
-                data-type="standard"
-                data-shape="rectangular"
-                data-theme="filled_blue"
-                data-text="signin_with"
-                data-size="large"
-                data-logo_alignment="left">
+            <!-- ❌ FIXED LAYER: Isolated row target block forcing Google Single Sign On to mount on screen ❌ -->
+            <div class="google-render-target-row">
+                <div class="g_id_signin"
+                    data-type="standard"
+                    data-shape="rectangular"
+                    data-theme="filled_blue"
+                    data-text="signin_with"
+                    data-size="large"
+                    data-logo_alignment="left"
+                    data-width="258"> <!-- Formatted matching layout button dimensions directly -->
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // ❌ REPAIRED SOUND SWITCHER: Unmutes wallpaper securely without blocking other container tags ❌
         function triggerAutomaticAudioSync() {
             let wallpaperVideo = document.getElementById('terminal-live-wallpaper');
             if (wallpaperVideo) {
@@ -160,18 +168,16 @@
                 wallpaperVideo.play();        
             }
             
-            // Replaces button text with active confirmation message cleanly
             let btn = document.getElementById('audio-btn');
             if (btn) {
                 btn.innerText = "🎵 Sound Frequencies Online";
-                btn.style.background = "rgba(0, 210, 255, 0.2)";
+                btn.style.background = "rgba(0, 210, 255, 0.1)";
                 btn.style.color = "var(--cyber-blue)";
-                btn.style.borderColor = "var(--cyber-blue)";
+                btn.style.border = "1px solid var(--cyber-blue)";
                 btn.disabled = true;
             }
         }
 
-        // Handles user account verification checks and opens your item pages
         function onGoogleAuthSuccess(googleCredentialPayload) {
             console.log("Account Identity Verified Token:", googleCredentialPayload.credential);
             alert("👑 Access Granted! Initializing market sector components...");
