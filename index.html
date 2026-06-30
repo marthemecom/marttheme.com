@@ -7,7 +7,6 @@
     
     <script src="https://google.com" async defer></script>
     <style>
-        /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
             --bg-dark-cyber: #050b14;
             --cyber-blue: #00d2ff;
@@ -77,25 +76,37 @@
             margin: 0 0 35px 0;
         }
 
-        /* Secure overlay wrapper block grouping for Google Single Sign On Buttons */
-        .auth-interceptor-wrapper {
+        .auth-container-wrapper {
             background: rgba(5, 11, 20, 0.85);
             border: 1px solid var(--border-color);
             padding: 30px;
             border-radius: 4px;
             box-shadow: 0 0 30px rgba(0, 102, 255, 0.2);
-            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
 
-        /* Hidden transparent bridge layer that captures the click first */
-        .click-trap-bridge {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
+        .btn-audio-activate {
+            background: var(--electric-blue);
+            color: var(--solid-white);
+            border: none;
+            padding: 12px 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             cursor: pointer;
+            box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);
+            transition: all 0.2s;
+            font-size: 12px;
+            width: 100%;
+        }
+
+        .btn-audio-activate:hover {
+            background: var(--cyber-blue);
+            color: #000;
+            box-shadow: 0 0 20px var(--cyber-blue);
         }
     </style>
 </head>
@@ -115,10 +126,10 @@
         <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
-        <div class="auth-interceptor-wrapper">
-            <!-- ⚡ UNBLOCKABLE INTERCEPTOR TRAP BRIDGE LAYER ⚡ -->
-            <div id="auth-click-trap" class="click-trap-bridge" onclick="triggerAutomaticAudioSync()"></div>
-            
+        <div class="auth-container-wrapper">
+            <!-- 🔊 UNMUTING CONTROL BUTTON NODE: Restores browser authorization safely 🔊 -->
+            <button type="button" id="audio-btn" class="btn-audio-activate" onclick="triggerAutomaticAudioSync()">🔊 Enable Wallpaper Sound</button>
+
             <!-- Google Client Script Configuration Element Row -->
             <div id="g_id_onload"
                 data-client_id="://googleusercontent.com"
@@ -141,20 +152,23 @@
     </div>
 
     <script>
-        // ❌ SEAMLESS TRIGGER RUN: Captures the user's login click to unmute the layout instantly! ❌
+        // ❌ REPAIRED SOUND SWITCHER: Unmutes wallpaper securely without blocking other container tags ❌
         function triggerAutomaticAudioSync() {
             let wallpaperVideo = document.getElementById('terminal-live-wallpaper');
             if (wallpaperVideo) {
-                wallpaperVideo.muted = false; // Unmutes audio parameters safely
-                wallpaperVideo.play();        // Forces sound frequencies to initialize
+                wallpaperVideo.muted = false; 
+                wallpaperVideo.play();        
             }
             
-            // Dissolves and removes the invisible trap overlay so Google's real login layer works instantly
-            let trapBridge = document.getElementById('auth-click-trap');
-            if (trapBridge) {
-                trapBridge.remove();
+            // Replaces button text with active confirmation message cleanly
+            let btn = document.getElementById('audio-btn');
+            if (btn) {
+                btn.innerText = "🎵 Sound Frequencies Online";
+                btn.style.background = "rgba(0, 210, 255, 0.2)";
+                btn.style.color = "var(--cyber-blue)";
+                btn.style.borderColor = "var(--cyber-blue)";
+                btn.disabled = true;
             }
-            console.log("📡 Core system sound loop initialized successfully!");
         }
 
         // Handles user account verification checks and opens your item pages
