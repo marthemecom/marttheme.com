@@ -24,6 +24,7 @@
             color: var(--solid-white);
             margin: 0;
             font-family: 'Segoe UI', system-ui, sans-serif;
+            overflow-x: hidden;
         }
 
         .gaming-header {
@@ -56,8 +57,33 @@
         }
         .tab-pill.active-pill { background: rgba(0, 102, 255, 0.3); border-color: var(--cyber-blue); text-shadow: 0 0 5px var(--cyber-blue); }
 
-        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; width: 100%; }
-        .gaming-product-card { background: rgba(5, 11, 20, 0.85); border: 1px solid rgba(0, 102, 255, 0.3); padding: 24px; display: flex; flex-direction: column; justify-content: space-between; min-height: 200px; box-sizing: border-box; transition: all 0.25s; }
+        /* ❌ FIXED LAYER: Flex wrap allocation container prevents product card cutouts ❌ */
+        .catalog-grid { 
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 25px !important; 
+            width: 100% !important;
+            box-sizing: border-box !important;
+            justify-content: flex-start !important;
+        }
+        
+        .gaming-product-card { 
+            background: rgba(5, 11, 20, 0.85); 
+            border: 1px solid rgba(0, 102, 255, 0.3); 
+            padding: 24px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            min-height: 220px; 
+            width: calc(33.333% - 17px) !important; /* Uniform row fit dimension split layout maps perfectly */
+            min-width: 280px !important; /* Prevents text crowding compression on compact screens */
+            box-sizing: border-box; 
+            transition: all 0.25s; 
+        }
+        
+        @media (max-width: 992px) { .gaming-product-card { width: calc(50% - 13px) !important; } }
+        @media (max-width: 768px) { .gaming-product-card { width: 100% !important; } }
+        
         .gaming-product-card:hover { border-color: var(--cyber-blue); box-shadow: 0 0 20px rgba(0, 210, 255, 0.25); transform: translateY(-3px); }
 
         .game-badge { font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: var(--bg-dark-cyber); background: var(--cyber-blue); padding: 3px 8px; align-self: flex-start; margin-bottom: 15px; }
@@ -100,7 +126,6 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">500rs</span></div>
                     <div class="action-container-gaming">
-                        <!-- 🚀 INLINE MOTOR LOGIC: Completely un-freezable, works without external function targets 🚀 -->
                         <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Professional Video Editing Work',price:500}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('Professional Video Editing Work added!');">Add to Cart</button>
                         <button type="button" class="btn-cyber" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Professional Video Editing Work',price:500}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); window.location.href='checkout.html';">Buy Now</button>
                     </div>
@@ -133,8 +158,3 @@
 
             <!-- YT Logo -->
             <div class="gaming-product-card">
-                <div><span class="game-badge">YT LOGO</span><h4>Vector YouTube Channel Logo</h4></div>
-                <div>
-                    <div class="price-row-gaming"><span class="price-gaming">50rs</span></div>
-                    <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Vector YouTube Channel Logo',price:50}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('Vector YouTube Channel Logo added!');">Add to Cart</button>
