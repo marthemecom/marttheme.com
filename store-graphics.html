@@ -77,7 +77,7 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <!-- ⚡ FIXED HEADER PATH: Routing securely over to cart.html ⚡ -->
+            <!-- Synchronized to point directly over to your operational cart.html file -->
             <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
@@ -157,11 +157,11 @@
         </div>
     </div>
 
-    <!-- ⚡ FIXED DETAILED SCRIPT MODULE ENGINE ⚡ -->
+    <!-- ⚡ FIXED SCRIPT BACKEND ENGINE FOR GRAPHICS PAGE ⚡ -->
     <script>
-        // Unifies memory arrays directly inside your standard shared 'global_mart_cart' grid key
+        // Reads from the matching 'martcart' database key used on your system setup
         function getDatabase() {
-            return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
+            return JSON.parse(localStorage.getItem('martcart')) || [];
         }
 
         function refreshHeaderBadge() {
