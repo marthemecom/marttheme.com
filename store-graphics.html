@@ -77,8 +77,8 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <!-- Synchronized to point directly over to your operational cart.html file -->
-            <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
+            <!-- Pointing directly over to your operational checkout page file -->
+            <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
     </header>
@@ -157,11 +157,11 @@
         </div>
     </div>
 
-    <!-- ⚡ FIXED SCRIPT BACKEND ENGINE FOR GRAPHICS PAGE ⚡ -->
+    <!-- ⚡ HIGH-UTILITY FUNCTION SYNC ENGINE ⚡ -->
     <script>
-        // Reads from the matching 'martcart' database key used on your system setup
+        // Reads from the correct shared database key used on your systems
         function getDatabase() {
-            return JSON.parse(localStorage.getItem('martcart')) || [];
+            return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
         }
 
         function refreshHeaderBadge() {
