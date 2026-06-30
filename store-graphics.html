@@ -77,7 +77,8 @@
     <header class="gaming-header">
         <a href="index.html" class="internal-logo">◀ MART THEME HUB</a>
         <div style="display: flex; align-items: center; gap: 25px;">
-            <a href="checkout.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
+            <!-- ⚡ FIXED HEADER PATH: Routing securely over to cart.html ⚡ -->
+            <a href="cart.html" style="font-weight: bold; color: var(--cyber-blue); text-decoration: none; font-size: 14px; letter-spacing: 1px;">🛒 SHOPPING CART (<span id="count">0</span>)</a>
             <a href="index.html" class="btn-cyber" style="padding: 6px 14px; text-decoration: none;">LOGOUT</a>
         </div>
     </header>
@@ -156,18 +157,18 @@
         </div>
     </div>
 
-    <!-- ⚡ FIXED SCRIPT BLOCK: Points strictly to global_mart_cart ⚡ -->
+    <!-- ⚡ FIXED DETAILED SCRIPT MODULE ENGINE ⚡ -->
     <script>
+        // Unifies memory arrays directly inside your standard shared 'global_mart_cart' grid key
         function getDatabase() {
             return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
         }
 
         function refreshHeaderBadge() {
             let activeItems = getDatabase();
-            document.getElementById('count').innerText = activeItems.length;
+            let badgeNode = document.getElementById('count');
+            if (badgeNode) {
+                badgeNode.innerText = activeItems.length;
+            }
         }
 
-        function pushToStorage(itemName, itemPrice) {
-            let activeItems = getDatabase();
-            activeItems.push({ name: itemName, price: parseInt(itemPrice) });
-            localStorage.setItem('global_mart_cart', JSON.stringify(activeItems));
