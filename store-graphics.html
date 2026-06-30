@@ -100,9 +100,9 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">500rs</span></div>
                     <div class="action-container-gaming">
-                        <!-- ⚡ RENAMED CACHE-BUSTING TRIGGERS: forces browser to execute fresh script functions ⚡ -->
-                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Professional Video Editing Work', 500)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Professional Video Editing Work', 500)">Buy Now</button>
+                        <!-- 🚀 INLINE MOTOR LOGIC: Completely un-freezable, works without external function targets 🚀 -->
+                        <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Professional Video Editing Work',price:500}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('Professional Video Editing Work added!');">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Professional Video Editing Work',price:500}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); window.location.href='checkout.html';">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -113,8 +113,8 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">100rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('High-CTR YouTube Thumbnail', 100)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('High-CTR YouTube Thumbnail', 100)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'High-CTR YouTube Thumbnail',price:100}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('High-CTR YouTube Thumbnail added!');">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'High-CTR YouTube Thumbnail',price:100}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); window.location.href='checkout.html';">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -125,8 +125,8 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">79rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Custom YouTube Channel Banner', 79)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Custom YouTube Channel Banner', 79)">Buy Now</button>
+                        <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Custom YouTube Channel Banner',price:79}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('Custom YouTube Channel Banner added!');">Add to Cart</button>
+                        <button type="button" class="btn-cyber" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Custom YouTube Channel Banner',price:79}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); window.location.href='checkout.html';">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -137,33 +137,4 @@
                 <div>
                     <div class="price-row-gaming"><span class="price-gaming">50rs</span></div>
                     <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Vector YouTube Channel Logo', 50)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Vector YouTube Channel Logo', 50)">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Discord Server Setup -->
-            <div class="gaming-product-card">
-                <div><span class="game-badge">DC SERVER SETUP</span><h4>Complete Discord Server Setup Layout</h4></div>
-                <div>
-                    <div class="price-row-gaming"><span class="price-gaming">700rs</span></div>
-                    <div class="action-container-gaming">
-                        <button type="button" class="btn-cyber-outline" onclick="handleAddGraphicsItem('Complete Discord Server Setup Layout', 700)">Add to Cart</button>
-                        <button type="button" class="btn-cyber" onclick="handleBuyGraphicsItem('Complete Discord Server Setup Layout', 700)">Buy Now</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ⚡ BRAND NEW FRESH ENGINE TRACK CONTEXT ⚡ -->
-    <script>
-        function loadCurrentCartList() {
-            return JSON.parse(localStorage.getItem('global_mart_cart')) || [];
-        }
-
-        function updateGraphicsHeaderCounter() {
-            let currentCartList = loadCurrentCartList();
-            let countElement = document.getElementById('cartCount');
-            if (countElement) {
+                        <button type="button" class="btn-cyber-outline" onclick="let c=JSON.parse(localStorage.getItem('global_mart_cart'))||[]; c.push({name:'Vector YouTube Channel Logo',price:50}); localStorage.setItem('global_mart_cart',JSON.stringify(c)); document.getElementById('cartCount').innerText=c.length; alert('Vector YouTube Channel Logo added!');">Add to Cart</button>
