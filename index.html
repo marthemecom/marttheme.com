@@ -7,7 +7,7 @@
     <style>
         /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
-            --bg-dark-cyber: #050b14;
+            --bg-dark-cyber: rgba(5, 11, 20, 0.4);
             --cyber-blue: #00d2ff;
             --electric-blue: #0066ff;
             --solid-white: #ffffff;
@@ -21,15 +21,44 @@
             width: 100%;
             height: 100%;
             font-family: 'Segoe UI', system-ui, sans-serif;
-            background-color: var(--bg-dark-cyber);
-            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.03) 1px, transparent 1px),
-                              linear-gradient(to right, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background-color: #050b14;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             box-sizing: border-box;
+        }
+
+        /* 🎥 THE LIVE WALLPAPER VIDEO BACKDROP COMPONENT 🎥 */
+        .live-wallpaper-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2; /* Pushes the video completely behind all text buttons */
+            overflow: hidden;
+        }
+
+        .live-wallpaper-backdrop video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Guarantees no scaling cuts on any monitor size */
+        }
+
+        /* Ambient network scanning overlay line grid tint */
+        .cyber-grid-tint-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to bottom, rgba(0, 210, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(to right, rgba(0, 210, 255, 0.02) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .gateway-card-hud {
@@ -38,6 +67,7 @@
             width: 100%;
             max-width: 360px;
             box-sizing: border-box;
+            z-index: 10;
         }
 
         .terminal-header {
@@ -91,117 +121,30 @@
             text-shadow: 0 0 5px var(--solid-white);
             transform: translateY(-2px);
         }
-
-        /* 👤 REAL-TIME CYBER USER PROFILE HUD STYLING 👤 */
-        .user-profile-hud-card {
-            display: none; /* Hidden by default */
-            background: rgba(5, 11, 20, 0.9);
-            border: 1px solid var(--cyber-blue);
-            padding: 25px;
-            border-radius: 4px;
-            box-shadow: 0 0 25px rgba(0, 210, 255, 0.2);
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .profile-avatar-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: 2px solid var(--cyber-blue);
-            box-shadow: 0 0 15px var(--cyber-blue);
-            margin: 0 auto 15px auto;
-            object-fit: cover;
-            background: #000;
-        }
-
-        .profile-title-name {
-            font-family: 'Impact', sans-serif;
-            font-size: 22px;
-            color: var(--solid-white);
-            letter-spacing: 1px;
-            margin: 0 0 5px 0;
-            text-transform: uppercase;
-        }
-
-        .profile-meta-email {
-            color: var(--muted-white);
-            font-size: 13px;
-            margin: 0 0 25px 0;
-        }
-
-        .btn-cyber-logout {
-            background: transparent;
-            color: #ff4d4d;
-            border: 1px solid #ff4d4d;
-            padding: 10px;
-            width: 100%;
-            font-weight: bold;
-            font-size: 11px;
-            text-transform: uppercase;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.2s;
-        }
-        .btn-cyber-logout:hover {
-            background: #ff4d4d;
-            color: #000;
-            box-shadow: 0 0 15px #ff4d4d;
-        }
     </style>
 </head>
 <body>
 
+    <!-- 🎥 SILENT AUTOMATIC LIVE WALLPAPER VIDEO BACKDROP INJECTOR 🎥 -->
+    <div class="live-wallpaper-backdrop">
+        <!-- 'muted' tag is present to make absolutely sure Chrome permits instant autoplay on load -->
+        <video autoplay loop playsinline muted>
+            <source src="background.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="cyber-grid-tint-overlay"></div>
+
+    <!-- MAIN ACCESS HUD TERMINAL BUTTONS -->
     <div class="gateway-card-hud">
         <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
-        <!-- ⚡ STANDARD 3-LINE BUTTON STACK LINK ROW ⚡ -->
-        <div id="logged-out-stack" class="options-button-stack-container">
+        <div class="options-button-stack-container">
             <a href="minecraft.html" class="btn-matrix-action">Enter Marketplace</a>
             <a href="login.html" class="btn-matrix-action">Login Terminal</a>
             <a href="login.html" class="btn-matrix-action">Sign Up</a>
         </div>
-
-        <!-- ⚡ DYNAMIC LIVE USER PROFILE CARD NODE ⚡ -->
-        <div id="logged-in-profile-hud" class="user-profile-hud-card">
-            <img id="user-hud-avatar" src="" alt="Avatar Node" class="profile-avatar-circle">
-            <h3 id="user-hud-name" class="profile-title-name">Authenticated User</h3>
-            <p id="user-hud-email" class="profile-meta-email">user@domain.com</p>
-            
-            <a href="minecraft.html" class="btn-matrix-action" style="margin-bottom:15px; padding:12px; font-size:12px;">Launch Dashboard</a>
-            <button type="button" class="btn-cyber-logout" onclick="executeProfileLogout()">Terminate Profile Session</button>
-        </div>
     </div>
 
-    <script>
-        function checkActiveProfileSession() {
-            // Extracts saved profile data strings from shared local website memory
-            let sessionData = JSON.parse(localStorage.getItem('authenticated_user_node'));
-            
-            if (sessionData) {
-                // Hides the standard 3-line links stack panel layout
-                document.getElementById('logged-out-stack').style.display = 'none';
-                
-                // Populates Google data parameters dynamically into your profile card rows
-                document.getElementById('user-hud-avatar').src = sessionData.picture || 'https://qrserver.com';
-                document.getElementById('user-hud-name').innerText = sessionData.name;
-                document.getElementById('user-hud-email').innerText = sessionData.email;
-                
-                // Reveals the glowing Profile Hub block component on screen natively
-                document.getElementById('logged-in-profile-hud').style.display = 'block';
-            }
-        }
-
-        function executeProfileLogout() {
-            localStorage.removeItem('authenticated_user_node');
-            alert("🔒 Session terminated successfully! Reverting core to baseline.");
-            window.location.reload();
-        }
-
-        // Run checking arrays immediately on window load initialization
-        window.addEventListener('DOMContentLoaded', checkActiveProfileSession);
-    </script>
 </body>
 </html>
