@@ -46,7 +46,6 @@
 
         .btn-cyber-submit { background: var(--electric-blue); color: var(--solid-white); border: none; padding: 14px; width: 100%; font-weight: bold; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; cursor: pointer; box-shadow: 0 0 10px rgba(0, 102, 255, 0.5); transition: all 0.2s; margin-top: 10px; }
         .btn-cyber-submit:hover { background: var(--cyber-blue); color: var(--bg-dark-cyber); box-shadow: 0 0 15px var(--cyber-blue); }
-        
         .divider-container { display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--muted-white); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
         .divider-container::before, .divider-container::after { content: ''; flex: 1; border-bottom: 1px solid var(--border-color); }
         .divider-container:not(:empty)::before { margin-right: .5em; }
@@ -81,12 +80,14 @@
                 <label>Security Password</label>
                 <input type="password" required placeholder="••••••••••••">
             </div>
-            <button type="submit" class="btn-cyber-submit">Authenticate Node</button>
+            <div class="action-row">
+                <button type="submit" class="btn-cyber-submit">Authenticate Node</button>
+            </div>
         </form>
 
         <div class="divider-container">OR</div>
 
-        <!-- ⚡ TARGET FIXED LINK INTERFACE BUTTON TRIGGER ⚡ -->
+        <!-- Google button that fires a direct, absolute URL query string -->
         <button type="button" class="btn-custom-google" onclick="triggerBypassAuth()">
             <svg class="google-vector-icon" viewBox="0 0 24 24">
                 <path fill="#EA4335" d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114A5.87 5.87 0 0 1 8.1 12.63a5.87 5.87 0 0 1 5.89-5.885c2.42 0 4.41 1.554 5.253 3.734l3.924-3.04C20.932 3.12 16.924 1 13.99 1 7.92 1 3 5.92 3 11.99s4.92 11 10.99 11c6.51 0 10.435-4.63 10.435-10.63 0-.61-.065-1.3-.18-2.075H12.24Z"/>
@@ -97,39 +98,31 @@
 
     <script>
         function triggerBypassAuth() {
-            // Your custom active Client ID 
-            const clientID = "335973319597-25qb156v1l8492pr0hbc9o6hip8e0rnc.apps.googleusercontent.com";
+            // Full direct URL token parameter chain constructed cleanly to prevent spaces or string stripping
+            const directGoogleAuthLink = "https://google.com" +
+                "?client_id=335973319597-25qb156v1l8492pr0hbc9o6hip8e0rnc.apps.googleusercontent.com" +
+                "&redirect_uri=https://onrender.com" +
+                "&response_type=token" +
+                "&scope=openid%20profile%20email" +
+                "&state=mart_marketplace_session";
             
-            // Auto-detect redirect domain origin link path location safely
-            const redirectLocationUri = window.location.origin + window.location.pathname;
-            
-            // Packs variables together smoothly into an unblockable real target URL string 
-            const googleParams = new URLSearchParams();
-            googleParams.append('client_id', clientID);
-            googleParams.append('redirect_uri', redirectLocationUri);
-            googleParams.append('response_type', 'token'); 
-            googleParams.append('scope', 'https://googleapis.com https://googleapis.com');
-            googleParams.append('state', 'mart_marketplace_session');
-            
-            // Redirects straight to the verified Google login prompt view screen
-            window.location.href = "https://google.com?" + googleParams.toString();
+            window.location.href = directGoogleAuthLink;
         }
 
         function executeManualFormSession() {
             let emailVal = document.getElementById('manual-email').value;
             const fallbackUser = { name: emailVal.split('@')[0], email: emailVal, picture: '' };
             localStorage.setItem('authenticated_user_node', JSON.stringify(fallbackUser));
-            alert('Access Authorized! Moving to marketplace node...');
+            alert('Access Authorized! Moving to marketplace...');
             window.location.href = 'minecraft.html';
         }
 
-        // 🔄 AUTOMATIC REAL-TIME USER DATA EXTRACTION LOOPS 🔄
+        // Extracts access token hash directly from the window context on callback return
         window.onload = function() {
             const URLHashParameters = new URLSearchParams(window.location.hash.substring(1));
             const activeToken = URLHashParameters.get('access_token');
 
             if (activeToken) {
-                // Instantly reads your user profile information packet data straight from Google API channels
                 fetch('https://googleapis.com', {
                     headers: { 'Authorization': `Bearer ${activeToken}` }
                 })
@@ -140,14 +133,12 @@
                         email: profileData.email,
                         picture: profileData.picture
                     };
-                    // Writes into central memory network storage slot
                     localStorage.setItem('authenticated_user_node', JSON.stringify(authenticatedUser));
-                    
                     alert(`Google Authentication Successful! Welcome, ${authenticatedUser.name}.`);
-                    window.location.href = "index.html"; // Returns user home to load profile widgets!
+                    window.location.href = "index.html"; 
                 })
                 .catch(err => {
-                    console.error("Profile load sync dropped log error:", err);
+                    console.error("Profile parsing token drop logs error:", err);
                     window.location.href = "minecraft.html";
                 });
             }
