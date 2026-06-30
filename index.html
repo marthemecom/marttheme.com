@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mart Theme - Gateway Terminal</title>
-    
-    <script src="https://google.com" async defer></script>
     <style>
         /* Strict Gaming Theme Colors (Blue & White Only) */
         :root {
@@ -38,14 +36,13 @@
             text-align: center;
             padding: 20px;
             width: 100%;
-            max-width: 420px;
+            max-width: 400px;
             box-sizing: border-box;
-            z-index: 10;
         }
 
         .terminal-header {
             font-family: 'Impact', sans-serif;
-            font-size: 48px;
+            font-size: 54px;
             letter-spacing: 2px;
             color: var(--solid-white);
             text-shadow: 0 0 20px var(--cyber-blue);
@@ -55,115 +52,44 @@
 
         .terminal-subtitle {
             color: var(--muted-white);
-            font-size: 13px;
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin: 0 0 30px 0;
+            margin: 0 0 40px 0;
         }
 
-        /* 🔒 RESTORED: Custom Normal Form Card Container Layout 🔒 */
-        .auth-container-wrapper {
-            background: rgba(5, 11, 20, 0.9);
-            border: 1px solid var(--border-color);
-            padding: 35px 30px;
-            border-radius: 4px;
-            box-shadow: 0 0 30px rgba(0, 102, 255, 0.25);
-            text-align: left;
+        /* 📋 THE ORIGINAL STABLE 3-LINE BUTTON ACTIONS BOX 📋 */
+        .options-button-stack-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
             width: 100%;
-            box-sizing: border-box;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 11px;
+        .btn-matrix-action {
+            background: rgba(5, 11, 20, 0.85);
+            color: var(--solid-white);
+            border: 1px solid var(--electric-blue);
+            padding: 16px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            color: var(--muted-white);
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid var(--electric-blue);
-            border-radius: 4px;
-            color: var(--solid-white);
-            font-size: 14px;
-            box-sizing: border-box;
+            font-size: 13px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 102, 255, 0.15);
             transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+            display: block;
         }
 
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--cyber-blue);
-            box-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
-        }
-
-        /* 🔘 RESTORED: Enter Marketplace Login Button 🔘 */
-        .btn-cyber-login {
+        .btn-matrix-action:hover {
             background: var(--electric-blue);
             color: var(--solid-white);
-            border: none;
-            padding: 14px;
-            width: 100%;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 13px;
-            letter-spacing: 1px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 102, 255, 0.4);
-            transition: all 0.2s;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .btn-cyber-login:hover {
-            background: var(--cyber-blue);
-            color: #000;
-            box-shadow: 0 0 15px var(--cyber-blue);
-        }
-
-        .toggle-auth-links {
-            text-align: center;
-            font-size: 13px;
-            color: var(--muted-white);
-            margin-bottom: 25px;
-        }
-
-        .toggle-auth-links a {
-            color: var(--cyber-blue);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .toggle-auth-links a:hover {
-            text-decoration: underline;
-        }
-
-        .divider-row {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            color: var(--muted-white);
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-bottom: 25px;
-        }
-        .divider-row::before, .divider-row::after { content: ''; flex: 1; border-bottom: 1px solid rgba(0, 102, 255, 0.2); }
-        .divider-row:not(:empty)::before { margin-right: .25em; }
-        .divider-row:not(:empty)::after { margin-left: .25em; }
-
-        .google-align-box {
-            display: flex;
-            justify-content: center;
-            width: 100%;
+            border-color: var(--cyber-blue);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+            text-shadow: 0 0 5px var(--solid-white);
+            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -173,63 +99,18 @@
         <h1 class="terminal-header">Mart Marketplace</h1>
         <p class="terminal-subtitle">Console Matrix Authorization Gateway</p>
 
-        <div class="auth-container-wrapper">
-            <!-- Normal Text input Fields Form Section -->
-            <form onsubmit="executeNormalLoginHandler(); return false;">
-                <div class="form-group">
-                    <label>Account Username / Email</label>
-                    <input type="text" required placeholder="Enter your player handle...">
-                </div>
-
-                <div class="form-group">
-                    <label>Secure Key Password</label>
-                    <input type="password" required placeholder="••••••••">
-                </div>
-
-                <!-- 🔘 Enter Marketplace Button Slot 🔘 -->
-                <button type="submit" class="btn-cyber-login">Enter Marketplace</button>
-            </form>
-
-            <!-- 🔘 Sign Up Options Text Block 🔘 -->
-            <div class="toggle-auth-links">
-                Don't have a terminal node? <a href="#" onclick="alert('Sign up framework initialization successful! Redirecting...'); return false;">Sign Up Here</a>
-            </div>
-
-            <div class="divider-row">Or Connect Via Security Node</div>
-
-            <!-- Optional Google SSO Connector Area Block -->
-            <div class="google-align-box">
-                <div id="g_id_onload"
-                    data-client_id="://googleusercontent.com"
-                    data-context="signin"
-                    data-ux_mode="popup"
-                    data-callback="onGoogleAuthSuccess"
-                    data-auto_select="false">
-                </div>
-
-                <div class="g_id_signin"
-                    data-type="standard"
-                    data-shape="rectangular"
-                    data-theme="filled_blue"
-                    data-text="signin_with"
-                    data-size="large"
-                    data-logo_alignment="left">
-                </div>
-            </div>
+        <!-- ⚡ RESTORED: Clean 3-Line Options Navigation Box ⚡ -->
+        <div class="options-button-stack-container">
+            <!-- Line 1: Enter Marketplace -->
+            <a href="minecraft.html" class="btn-matrix-action">Enter Marketplace</a>
+            
+            <!-- Line 2: Login Profile Node -->
+            <a href="#" class="btn-matrix-action" onclick="alert('Login sequence initialized Node...'); return false;">Login Terminal</a>
+            
+            <!-- Line 3: Register Sign Up Node -->
+            <a href="#" class="btn-matrix-action" onclick="alert('Sign up framework initialization successful! Redirecting...'); return false;">Sign Up</a>
         </div>
     </div>
 
-    <script>
-        function executeNormalLoginHandler() {
-            alert("🔒 Access Authorized via Normal Credentials! Entering Main Sector Hub...");
-            window.location.href = 'minecraft.html';
-        }
-
-        function onGoogleAuthSuccess(googleCredentialPayload) {
-            console.log("Account Identity Verified Token:", googleCredentialPayload.credential);
-            alert("👑 Access Granted via Google! Initializing market sector components...");
-            window.location.href = 'minecraft.html';
-        }
-    </script>
 </body>
 </html>
